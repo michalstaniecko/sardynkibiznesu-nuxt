@@ -1,0 +1,25 @@
+.navigation-dropdown {
+  @screen lg {
+    @apply absolute top-[100%] mt-[-2px] left-0 invisible;
+
+    .navigation__item:hover & {
+      @apply visible;
+    }
+  }
+}
+
+.navigation__link {
+  @apply border-b-2 border-transparent;
+}
+
+.navigation {
+  .router-link-exact-active {
+    @apply border-primary-500 text-black;
+  }
+}
+
+.navigation-dropdown {
+  .router-link-exact-active {
+    @apply bg-primary-500 text-white hover:bg-primary-500;
+  }
+}

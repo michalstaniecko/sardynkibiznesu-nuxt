@@ -1,0 +1,44 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier . --check",
+    "lintfix": "eslint . --fix && prettier --write --list-different ."
+  },
+  "dependencies": {
+    "@eslint/js": "^9.5.0",
+    "@nuxt/eslint": "^0.3.13",
+    "@nuxt/eslint-config": "^0.3.13",
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "flowbite": "^2.3.0",
+    "nuxt": "^3.12.1",
+    "nuxt-viewport": "^2.1.5",
+    "pinia": "^2.1.7",
+    "prettier": "^3.3.2",
+    "sass": "^1.77.5",
+    "typescript": "^5.5.2",
+    "vue": "^3.4.27",
+    "vue-dompurify-html": "^5.1.0",
+    "vue-router": "^4.3.3"
+  },
+  "devDependencies": {
+    "@nuxtjs/apollo": "5.0.0-alpha.14"
+  }
+}
