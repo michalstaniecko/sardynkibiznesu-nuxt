@@ -1,9 +1,7 @@
-import postsQuery from "~/queries/postsQuery";
+import query from "~/queries/postsQuery";
 import type { PostProps } from "~/@types/post";
 
 export const usePostsQuery = () => {
-  const query = postsQuery;
-
   const variables = {
     perPage: 10,
     after: "",

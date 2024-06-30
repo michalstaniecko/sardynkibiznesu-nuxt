@@ -23,7 +23,11 @@ export type PostProps = {
         sizes: {
           sourceUrl: string;
           name: string;
+          width: number;
+          height: number;
         }[];
+        width: number;
+        height: number;
       };
       id: string;
       srcSet: string;

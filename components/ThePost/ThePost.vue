@@ -7,13 +7,16 @@ const { post } = defineProps<{
   post: PostProps;
 }>();
 
-const imageSmall = post.featuredImage?.node?.mediaDetails?.sizes?.[0].sourceUrl;
+const imageSmall = post.featuredImage?.node?.mediaDetails?.sizes?.[0];
 
-const imageFull = post.featuredImage?.node?.sourceUrl;
+const imageFull = post.featuredImage?.node;
 
-const imageUrl = imageSmall || imageFull;
+const imageUrl = imageSmall?.sourceUrl || imageFull?.sourceUrl;
 
 const src = ref(`${imageUrl}.webp`);
+
+const width = imageSmall?.width || imageFull?.mediaDetails.width;
+const height = imageSmall?.height || imageFull?.mediaDetails.height;
 
 const errorHandler = () => {
   src.value = imageUrl;
@@ -29,6 +32,8 @@ const errorHandler = () => {
           :src="img(src)"
           :alt="post.title"
           loading="lazy"
+          :width="width"
+          :height="height"
           @error="errorHandler"
         />
       </nuxt-link>
