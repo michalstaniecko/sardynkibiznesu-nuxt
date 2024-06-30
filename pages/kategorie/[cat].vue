@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import categoryQuery from "~/queries/categoryQuery";
 import type { PostProps } from "~/@types/post";
 import { useCategoryQuery } from "~/composables/useCategoryQuery";
 
 const route = useRoute();
 const { cat } = route.params;
-
-const variables = { id: cat, slug: cat, perPage: 10 };
 
 const posts = ref<PostProps[]>([]);
 
@@ -17,8 +14,6 @@ setCategory(cat as string);
 await loadMore().then(() => true);
 
 posts.value = data.value?.posts.nodes || [];
-
-console.log(data.value);
 
 const handleLoadMore = async () => {
   await loadMore();

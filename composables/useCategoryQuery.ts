@@ -1,4 +1,5 @@
 import query from "~/queries/categoryQuery";
+import type { PostProps } from "~/@types/post";
 
 export const useCategoryQuery = () => {
   const variables = {
@@ -8,10 +9,18 @@ export const useCategoryQuery = () => {
     slug: "",
   };
 
-  const { data, error, status, execute } = useAsyncQuery(
-    { query, variables },
-    { immediate: false },
-  );
+  const { data, error, status, execute } = useAsyncQuery<{
+    category: {
+      name: string;
+    };
+    posts: {
+      pageInfo: {
+        hasNextPage: boolean;
+        endCursor: string;
+      };
+      nodes: PostProps[];
+    };
+  }>({ query, variables }, { immediate: false });
 
   const loadMore = async () => {
     variables.after = data?.value?.posts.pageInfo.endCursor || "";
