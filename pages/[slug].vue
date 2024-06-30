@@ -10,29 +10,10 @@ type PageProps = {
   };
 };
 
-const query = gql`
-  query getPage($id: ID!, $slug: String!) {
-    page(id: $id, idType: URI) {
-      title
-      content
-      excerpt
-    }
-    category(id: $id, idType: SLUG) {
-      name
-    }
-    posts(where: { categoryName: $slug }, first: 10) {
-      nodes {
-        title
-        excerpt
-        slug
-      }
-    }
-  }
-`;
+const { data, status, loadMore, setPage } = usePageQuery();
+setPage(slug as string);
 
-const variables = { id: slug, slug: slug };
-
-const { data, status } = await useAsyncQuery<PageProps>(query, variables);
+await loadMore().then(() => true);
 
 if (!data.value?.page && !data.value?.category) {
   throw createError({
@@ -40,27 +21,18 @@ if (!data.value?.page && !data.value?.category) {
     message: "Page not found",
   });
 }
-
-useHead({
-  title: data.value.page.title,
-  meta: [
-    {
-      name: "description",
-      content: data.value.page.excerpt,
-    },
-  ],
-});
 </script>
 
 <template>
   <div>
-    <div>
-      {{ data?.page.title }}
-    </div>
-    <div>
-      {{ status }}
-    </div>
-    <div v-html="data?.page.content" />
+    <ThePage v-if="data?.page" :page="data.page" />
+    <TheCategory
+      v-else-if="data?.category"
+      :category="data.category"
+      :posts="data.posts"
+      :load-more="loadMore"
+      :status="status"
+    />
   </div>
 </template>
 
