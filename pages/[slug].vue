@@ -6,28 +6,50 @@ type PageProps = {
   page: {
     title: string;
     content: string;
+    excerpt: string;
   };
 };
 
 const query = gql`
-  query getPage($id: ID!) {
+  query getPage($id: ID!, $slug: String!) {
     page(id: $id, idType: URI) {
       title
       content
+      excerpt
+    }
+    category(id: $id, idType: SLUG) {
+      name
+    }
+    posts(where: { categoryName: $slug }, first: 10) {
+      nodes {
+        title
+        excerpt
+        slug
+      }
     }
   }
 `;
 
-const variables = { id: slug };
+const variables = { id: slug, slug: slug };
 
 const { data, status } = await useAsyncQuery<PageProps>(query, variables);
 
-if (!data.value?.page) {
+if (!data.value?.page && !data.value?.category) {
   throw createError({
     statusCode: 404,
     message: "Page not found",
   });
 }
+
+useHead({
+  title: data.value.page.title,
+  meta: [
+    {
+      name: "description",
+      content: data.value.page.excerpt,
+    },
+  ],
+});
 </script>
 
 <template>

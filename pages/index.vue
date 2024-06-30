@@ -1,76 +1,31 @@
 <script setup lang="ts">
 import type { PostProps } from "~/@types/post";
 
-const variables = {
-  perPage: 10,
-};
+definePageMeta({
+  layout: "no-breadcrumb",
+});
 
-const query = gql`
-  query allPosts($perPage: Int = 10) {
-    posts(first: $perPage, where: { status: PUBLISH }) {
-      edges {
-        cursor
-        node {
-          id
-          title
-          excerpt
-          slug
-          uri
-          author {
-            node {
-              name
-              uri
-            }
-          }
-          categories {
-            nodes {
-              name
-              uri
-            }
-          }
-          date
-          commentCount
-          featuredImage {
-            node {
-              mediaDetails {
-                sizes(include: [SINGLE_DESKTOP]) {
-                  sourceUrl
-                  name
-                }
-              }
-              id
-              srcSet
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+const posts = ref<PostProps[]>([]);
 
-const { data, error, refresh, status } = await useAsyncQuery<{
-  edges: {
-    cursor: string;
-    node: PostProps;
-  }[];
-}>({ query, variables });
+const { loadMore, status, data } = usePostsQuery();
 
-const handleLoadMore = () => {
-  variables.perPage += 10;
-  refresh();
+await loadMore().then(() => true);
+
+posts.value = data.value?.posts.nodes || [];
+
+const handleLoadMore = async () => {
+  await loadMore();
+  posts.value = data.value?.posts.nodes
+    ? [...posts.value, ...data.value.posts.nodes]
+    : posts.value;
 };
 </script>
 
 <template>
   <div>
-    <template v-if="data?.posts?.edges">
+    <template v-if="posts">
       <div class="grid gap-10">
-        <ThePost
-          v-for="post in data.posts?.edges"
-          :key="post.node.id"
-          :post="post.node"
-        />
+        <ThePost v-for="post in posts" :key="post.id" :post="post" />
       </div>
     </template>
     <div class="text-center py-10">

@@ -30,6 +30,8 @@ const commentLabel = () => {
 };
 </script>
 
-<template>{{ count }} {{ commentLabel() }}</template>
+<template>
+  <span> {{ count }} {{ commentLabel() }} </span>
+</template>
 
 <style scoped></style>

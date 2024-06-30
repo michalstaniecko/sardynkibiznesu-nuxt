@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PostProps } from "~/@types/post";
 
+const img = useImage();
+
 const { post } = defineProps<{
   post: PostProps;
 }>();
@@ -10,13 +12,25 @@ const imageSmall = post.featuredImage?.node?.mediaDetails?.sizes?.[0].sourceUrl;
 const imageFull = post.featuredImage?.node?.sourceUrl;
 
 const imageUrl = imageSmall || imageFull;
+
+const src = ref(`${imageUrl}.webp`);
+
+const errorHandler = () => {
+  src.value = imageUrl;
+};
 </script>
 
 <template>
   <div class="grid md:grid-cols-[200px_1fr] gap-5">
     <div>
       <nuxt-link :to="post.uri">
-        <NuxtImg :src="imageUrl" :alt="post.title" />
+        <NuxtImg
+          format="webp"
+          :src="img(src)"
+          :alt="post.title"
+          loading="lazy"
+          @error="errorHandler"
+        />
       </nuxt-link>
     </div>
     <div class="grid">
