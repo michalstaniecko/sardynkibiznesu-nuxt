@@ -12,6 +12,7 @@ export const useCategoryQuery = () => {
   const { data, error, status, execute } = useAsyncQuery<{
     category: {
       name: string;
+      description: string;
     };
     posts: {
       pageInfo: {

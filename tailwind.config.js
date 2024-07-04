@@ -7,12 +7,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Lato"', ...defaultTheme.fontFamily.sans],
+        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       screens: {
         xxl: "1440px",
       },
       colors: {
+        base: "#222",
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",

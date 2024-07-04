@@ -7,6 +7,7 @@ export default gql`
   ) {
     category(id: $id, idType: SLUG) {
       name
+      description
     }
     posts(where: { categoryName: $slug }, first: $perPage, after: $after) {
       pageInfo {

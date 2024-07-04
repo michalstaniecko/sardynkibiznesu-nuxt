@@ -17,3 +17,12 @@ h3, .h3 {
     @apply mb-3 mt-5;
   }
 }
+
+a {
+  @apply hover:underline;
+  text-underline-offset: 2px;
+
+  .navigation & {
+    @apply hover:no-underline;
+  }
+}

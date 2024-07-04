@@ -24,8 +24,8 @@ const handleLoadMore = async () => {
 </script>
 
 <template>
-  <div>
-    <div>{{ data.category.name }}</div>
+  <div class="grid gap-5">
+    <div class="text-xl">{{ data?.category.description }}</div>
     <ThePostList
       :posts="posts"
       :status="status"
