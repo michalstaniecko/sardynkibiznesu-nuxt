@@ -1,25 +1,13 @@
 <script setup lang="ts">
+import type { PostProps } from "~/@types/post";
+import query from "~/queries/postQuery";
+
 const route = useRoute();
 const { slug } = route.params;
 
-type PostProps = {
-  post: {
-    slug: string;
-    content: string;
-  };
-};
-
-const query = gql`
-  query getPost($id: ID!) {
-    post(id: $id, idType: SLUG) {
-      content
-    }
-  }
-`;
-
 const variables = { id: slug };
 
-const { data } = await useAsyncQuery<PostProps>(query, variables);
+const { data } = await useAsyncQuery<{ post: PostProps }>(query, variables);
 
 if (!data.value?.post) {
   throw createError({
@@ -30,9 +18,21 @@ if (!data.value?.post) {
 </script>
 
 <template>
-  <div>
-    <div>post: {{ slug }}</div>
-    <div v-html="data?.post?.content" />
+  <div class="grid gap-5 article article--post">
+    <div class="">
+      <NuxtImg
+        :src="data?.post.featuredImage.node.sourceUrl"
+        :srcset="data?.post.featuredImage.node.srcSet"
+        :width="data?.post.featuredImage.node.mediaDetails.width"
+        :height="data?.post.featuredImage.node.mediaDetails.height"
+        :alt="data?.post.title"
+      />
+    </div>
+    <div>
+      <h1 class="">{{ data?.post.title }}</h1>
+      <ThePostMeta v-if="data" :post="data.post" />
+    </div>
+    <div class="article__content" v-html="data?.post?.content" />
   </div>
 </template>
 

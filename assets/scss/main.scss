@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
+@import 'components/article';
+@import 'components/typos';
 
 @layer base {
   @font-face {
@@ -24,3 +26,5 @@
 }
 
 @import 'components/navigation';
+
+@tailwind utilities;

@@ -1,0 +1,19 @@
+h1, .h1 {
+  @apply text-4xl;
+}
+
+h2, .h2 {
+  @apply text-3xl font-normal;
+
+  .article & {
+    @apply mb-3 mt-5;
+  }
+}
+
+h3, .h3 {
+  @apply text-2xl font-normal;
+
+  .article & {
+    @apply mb-3 mt-5;
+  }
+}

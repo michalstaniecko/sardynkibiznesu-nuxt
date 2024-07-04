@@ -14,6 +14,7 @@ export const usePageQuery = () => {
       title: string;
       content: string;
       excerpt: string;
+      template: { templateName: string };
     };
     category: {
       name: string;

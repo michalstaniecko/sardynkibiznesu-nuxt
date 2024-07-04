@@ -9,6 +9,9 @@ export default gql`
       title
       content
       excerpt
+      template {
+        templateName
+      }
     }
     category(id: $id, idType: SLUG) {
       name

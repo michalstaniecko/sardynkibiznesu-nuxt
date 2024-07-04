@@ -1,0 +1,7 @@
+.article {
+  @apply text-xl font-light;
+}
+
+.article__content {
+  @apply grid gap-3;
+}

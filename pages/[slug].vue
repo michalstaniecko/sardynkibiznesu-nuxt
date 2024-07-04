@@ -2,14 +2,6 @@
 const route = useRoute();
 const { slug } = route.params;
 
-type PageProps = {
-  page: {
-    title: string;
-    content: string;
-    excerpt: string;
-  };
-};
-
 const { data, status, loadMore, setPage } = usePageQuery();
 setPage(slug as string);
 
@@ -20,6 +12,10 @@ if (!data.value?.page && !data.value?.category) {
     statusCode: 404,
     message: "Page not found",
   });
+}
+
+if (data?.value?.page?.template?.templateName !== "Default") {
+  setPageLayout("full-width");
 }
 </script>
 
