@@ -6,6 +6,7 @@ const { loadMore, posts } = defineProps<{
   loadMore: () => Promise<void>;
   category: {
     name: string;
+    description: string;
   };
   posts: {
     pageInfo: {
@@ -25,8 +26,10 @@ const handleLoadMore = async () => {
 </script>
 
 <template>
-  <div>
-    <div>{{ category.name }}</div>
+  <div class="grid gap-10">
+    <div v-if="category.description" class="text-lg font-normal">
+      {{ category.description }}
+    </div>
     <ThePostList
       :posts="postsRef"
       :status="status"

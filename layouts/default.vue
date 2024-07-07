@@ -3,7 +3,7 @@
 <template>
   <div>
     <TheHeader />
-    <div class="grid lg:grid-cols-4 gap-8 max-w-screen-xxl mx-auto p-5">
+    <div class="grid lg:grid-cols-4 gap-8 max-w-screen-xxl mx-auto px-5 py-10">
       <div class="col-span-3">
         <slot />
       </div>
