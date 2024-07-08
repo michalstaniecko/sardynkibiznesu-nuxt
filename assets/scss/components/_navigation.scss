@@ -17,6 +17,7 @@
 }
 
 .navigation {
+  @apply text-sm;
   .router-link-exact-active {
     @apply border-primary-700 text-black;
   }
