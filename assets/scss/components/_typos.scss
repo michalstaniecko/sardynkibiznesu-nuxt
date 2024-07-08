@@ -1,0 +1,35 @@
+h1, .h1 {
+  @apply text-2xl;
+
+  @screen md {
+    @apply text-4xl leading-[3rem];
+  }
+}
+
+h2, .h2 {
+  @apply text-xl font-normal;
+  @screen md {
+    @apply text-3xl;
+  }
+
+  .article & {
+    @apply mb-3 mt-5;
+  }
+}
+
+h3, .h3 {
+  @apply text-2xl font-normal;
+
+  .article & {
+    @apply mb-3 mt-5;
+  }
+}
+
+a {
+  @apply hover:underline;
+  text-underline-offset: 2px;
+
+  .navigation & {
+    @apply hover:no-underline;
+  }
+}

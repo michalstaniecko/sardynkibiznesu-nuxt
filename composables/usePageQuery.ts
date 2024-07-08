@@ -1,13 +1,25 @@
-import query from "~/queries/postsQuery";
+import query from "~/queries/pageQuery";
 import type { PostProps } from "~/@types/post";
 
-export const usePostsQuery = () => {
+export const usePageQuery = () => {
   const variables = {
+    id: "",
+    slug: "",
     perPage: 10,
     after: "",
   };
 
   const { data, error, status, execute } = useAsyncQuery<{
+    page: {
+      title: string;
+      content: string;
+      excerpt: string;
+      template: { templateName: string };
+    };
+    category: {
+      name: string;
+      description: string;
+    };
     posts: {
       pageInfo: {
         hasNextPage: boolean;
@@ -15,16 +27,16 @@ export const usePostsQuery = () => {
       };
       nodes: PostProps[];
     };
-  }>(
-    { query, variables },
-    {
-      immediate: false,
-    },
-  );
+  }>({ query, variables }, { immediate: false });
 
   const loadMore = async () => {
     variables.after = data?.value?.posts.pageInfo.endCursor || "";
     await execute();
+  };
+
+  const setPage = (page: string) => {
+    variables.id = page;
+    variables.slug = page;
   };
 
   return {
@@ -32,5 +44,6 @@ export const usePostsQuery = () => {
     error,
     status,
     loadMore,
+    setPage,
   };
 };

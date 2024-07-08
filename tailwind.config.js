@@ -1,18 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 export default {
   content: ["./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Lato"', ...defaultTheme.fontFamily.sans],
+        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       screens: {
         xxl: "1440px",
       },
       colors: {
+        base: "#222",
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",

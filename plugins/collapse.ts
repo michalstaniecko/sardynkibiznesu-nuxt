@@ -2,11 +2,13 @@ import { Collapse } from "flowbite";
 
 export default defineNuxtPlugin({
   hooks: {
-    "app:mounted"() {
+    "page:loading:end"() {
       const triggers = document.querySelectorAll("[data-collapse-toggle]");
       triggers.forEach((trigger) => {
-        const target = document.getElementById(trigger.dataset.collapseToggle);
-        new Collapse(target, trigger);
+        const target = document.getElementById(
+          (trigger as HTMLElement)!.dataset!.collapseToggle!,
+        );
+        new Collapse(target, trigger as HTMLElement);
       });
     },
   },

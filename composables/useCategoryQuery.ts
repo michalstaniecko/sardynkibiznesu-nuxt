@@ -1,13 +1,19 @@
-import query from "~/queries/postsQuery";
+import query from "~/queries/categoryQuery";
 import type { PostProps } from "~/@types/post";
 
-export const usePostsQuery = () => {
+export const useCategoryQuery = () => {
   const variables = {
     perPage: 10,
     after: "",
+    id: "",
+    slug: "",
   };
 
   const { data, error, status, execute } = useAsyncQuery<{
+    category: {
+      name: string;
+      description: string;
+    };
     posts: {
       pageInfo: {
         hasNextPage: boolean;
@@ -15,16 +21,16 @@ export const usePostsQuery = () => {
       };
       nodes: PostProps[];
     };
-  }>(
-    { query, variables },
-    {
-      immediate: false,
-    },
-  );
+  }>({ query, variables }, { immediate: false });
 
   const loadMore = async () => {
     variables.after = data?.value?.posts.pageInfo.endCursor || "";
     await execute();
+  };
+
+  const setCategory = (category: string) => {
+    variables.id = category;
+    variables.slug = category;
   };
 
   return {
@@ -32,5 +38,6 @@ export const usePostsQuery = () => {
     error,
     status,
     loadMore,
+    setCategory,
   };
 };

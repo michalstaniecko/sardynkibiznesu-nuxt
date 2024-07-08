@@ -1,0 +1,15 @@
+.article {
+}
+
+.article__content {
+  @apply grid gap-3;
+
+  img {
+    width: 100%;
+  }
+
+  a {
+    @apply underline;
+    text-underline-offset: 2px;
+  }
+}

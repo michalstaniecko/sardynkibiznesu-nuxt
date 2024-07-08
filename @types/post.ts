@@ -4,6 +4,7 @@ export type PostProps = {
   id: string;
   title: string;
   excerpt: string;
+  content: string;
   slug: string;
   uri: string;
   author: {
@@ -23,7 +24,11 @@ export type PostProps = {
         sizes: {
           sourceUrl: string;
           name: string;
+          width: number;
+          height: number;
         }[];
+        width: number;
+        height: number;
       };
       id: string;
       srcSet: string;

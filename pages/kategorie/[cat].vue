@@ -1,31 +1,42 @@
 <script setup lang="ts">
+import type { PostProps } from "~/@types/post";
+import { useCategoryQuery } from "~/composables/useCategoryQuery";
+
 const route = useRoute();
 const { cat } = route.params;
 
-const query = gql`
-  query getCategory($id: ID!, $slug: String!, $postLimit: Int!) {
-    category(id: $id, idType: SLUG) {
-      name
-    }
-    posts(where: { categoryName: $slug }, first: $postLimit) {
-      nodes {
-        title
-        excerpt
-        slug
-      }
-    }
-  }
-`;
+const posts = ref<{
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string;
+  };
+  nodes: PostProps[];
+}>();
 
-const variables = { id: cat, slug: cat, postLimit: 10 };
+const { loadMore, status, data, setCategory } = useCategoryQuery();
 
-const { data, status, error } = await useAsyncQuery(query, variables);
+setCategory(cat as string);
+
+await loadMore().then(() => true);
+
+posts.value = data.value?.posts || [];
+
+const handleLoadMore = async () => {
+  await loadMore();
+  posts.value = data.value?.posts.nodes
+    ? [...posts.value, ...data.value.posts.nodes]
+    : posts.value;
+};
 </script>
 
 <template>
-  <div>
-    <div>Category Name: {{ data.category.name }}</div>
-    <div>{{ data }}</div>
+  <div class="grid gap-5">
+    <TheCategory
+      :category="data.category"
+      :posts="data.posts"
+      status="status"
+      :load-more="loadMore"
+    />
   </div>
 </template>
 

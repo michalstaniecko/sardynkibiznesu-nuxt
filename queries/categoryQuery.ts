@@ -1,6 +1,15 @@
 export default gql`
-  query allPosts($perPage: Int = 10, $after: String = "") {
-    posts(first: $perPage, after: $after, where: { status: PUBLISH }) {
+  query getCategory(
+    $id: ID!
+    $slug: String!
+    $perPage: Int!
+    $after: String = ""
+  ) {
+    category(id: $id, idType: SLUG) {
+      name
+      description
+    }
+    posts(where: { categoryName: $slug }, first: $perPage, after: $after) {
       pageInfo {
         hasNextPage
         endCursor

@@ -3,11 +3,11 @@
 <template>
   <div>
     <TheHeader />
-    <div class="grid lg:grid-cols-4 gap-8 max-w-screen-xxl mx-auto">
-      <div class="col-span-3 p-5">
+    <div class="layout layout-default">
+      <div class="layout__content">
         <slot />
       </div>
-      <div class="col-span-1">
+      <div class="layout__sidebar">
         <TheSidebar />
       </div>
     </div>
