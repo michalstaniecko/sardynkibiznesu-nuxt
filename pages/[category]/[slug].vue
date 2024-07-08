@@ -19,15 +19,14 @@ if (!data.value?.post) {
 
 <template>
   <div class="grid gap-5 article article--post">
-    <div class="">
-      <NuxtImg
-        :src="data?.post.featuredImage.node.sourceUrl"
-        :srcset="data?.post.featuredImage.node.srcSet"
-        :width="data?.post.featuredImage.node.mediaDetails.width"
-        :height="data?.post.featuredImage.node.mediaDetails.height"
-        :alt="data?.post.title"
-      />
-    </div>
+    <ThePostFeaturedImage
+      v-if="data"
+      :source-url="data.post.featuredImage.node.sourceUrl"
+      :src-set="data.post.featuredImage.node.srcSet"
+      :width="data.post.featuredImage.node.mediaDetails.width"
+      :height="data.post.featuredImage.node.mediaDetails.height"
+      :alt="data.post.title"
+    />
     <div>
       <h1 class="">{{ data?.post.title }}</h1>
       <ThePostMeta v-if="data" :post="data.post" />

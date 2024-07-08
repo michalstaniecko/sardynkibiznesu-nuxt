@@ -13,23 +13,22 @@ if (!data.value?.page && !data.value?.category) {
     message: "Page not found",
   });
 }
-
-if (data?.value?.page?.template?.templateName !== "Default") {
-  setPageLayout("full-width");
-}
 </script>
 
 <template>
-  <div>
-    <ThePage v-if="data?.page" :page="data.page" />
-    <TheCategory
-      v-else-if="data?.category"
-      :category="data.category"
-      :posts="data.posts"
-      :load-more="loadMore"
-      :status="status"
-    />
-  </div>
+  <Suspense>
+    <div>
+      <ThePage v-if="data?.page" :page="data.page" />
+      <TheCategory
+        v-else-if="data?.category"
+        :category="data.category"
+        :posts="data.posts"
+        :load-more="loadMore"
+        :status="status"
+      />
+    </div>
+    <template #fallback> Loading </template>
+  </Suspense>
 </template>
 
 <style scoped></style>

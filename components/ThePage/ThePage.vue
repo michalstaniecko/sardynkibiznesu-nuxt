@@ -1,5 +1,9 @@
 <script setup lang="ts">
-defineProps<{
+const {
+  page: {
+    template: { templateName },
+  },
+} = defineProps<{
   page: {
     title: string;
     content: string;
@@ -9,6 +13,12 @@ defineProps<{
     };
   };
 }>();
+
+useHead({
+  bodyAttrs: {
+    class: templateName.toLowerCase().replaceAll(" ", "-"),
+  },
+});
 </script>
 
 <template>

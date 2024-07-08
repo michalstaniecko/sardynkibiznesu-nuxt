@@ -18,11 +18,15 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  image: {
+    inject: true,
+    domains: [process.env.NUXT_API_BASE_URL ?? ""],
+  },
 
   apollo: {
     clients: {
       default: {
-        httpEndpoint: "https://sardynkibiznesu.pl/graphql",
+        httpEndpoint: `${process.env.NUXT_API_BASE_URL}/graphql`,
       },
     },
   },

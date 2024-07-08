@@ -15,7 +15,12 @@ export const usePostsQuery = () => {
       };
       nodes: PostProps[];
     };
-  }>({ query, variables }, { immediate: false });
+  }>(
+    { query, variables },
+    {
+      immediate: false,
+    },
+  );
 
   const loadMore = async () => {
     variables.after = data?.value?.posts.pageInfo.endCursor || "";

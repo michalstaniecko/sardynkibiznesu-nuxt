@@ -18,6 +18,7 @@ export const usePageQuery = () => {
     };
     category: {
       name: string;
+      description: string;
     };
     posts: {
       pageInfo: {

@@ -15,8 +15,10 @@ const imageUrl = imageSmall?.sourceUrl || imageFull?.sourceUrl;
 
 const src = ref(`${imageUrl}.webp`);
 
-const width = imageSmall?.width || imageFull?.mediaDetails.width;
-const height = imageSmall?.height || imageFull?.mediaDetails.height;
+const ratio = 768 / imageFull?.mediaDetails.width;
+
+const width = 768;
+const height = ratio * imageFull?.mediaDetails.height;
 
 const errorHandler = () => {
   src.value = imageUrl;
@@ -28,12 +30,13 @@ const errorHandler = () => {
     <div>
       <nuxt-link :to="post.uri">
         <NuxtImg
-          format="webp"
-          :src="img(src)"
+          :src="imageFull.sourceUrl"
           :alt="post.title"
+          format="webp"
           loading="lazy"
           :width="width"
           :height="height"
+          sizes="768px md:200px"
           @error="errorHandler"
         />
       </nuxt-link>
@@ -53,4 +56,54 @@ const errorHandler = () => {
   </div>
 </template>
 
-<style scoped></style>
+<style>
+.about-author {
+  padding: 24px 24px 24px 70px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  background-color: #efefef;
+  position: relative;
+  margin-left: 48px;
+  min-height: 148px;
+  max-width: 620px;
+
+  @media (max-width: 768px) {
+    padding: 24px 24px 24px 40px;
+  }
+}
+
+.about-author__title {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.about-author__meta-title {
+  font-size: 12px;
+}
+
+.about-author__description {
+  font-size: 14px;
+}
+
+.about-author__image {
+  position: absolute;
+  left: -48px;
+  top: 24px;
+  img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+
+    @media (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+.about-author__links {
+  margin-top: 8px;
+  a {
+    margin-right: 0.5rem;
+  }
+}
+</style>
