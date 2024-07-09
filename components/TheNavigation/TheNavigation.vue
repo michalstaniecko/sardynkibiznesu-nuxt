@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import type { MenuProps } from "~/@types/menu";
 import { useSettingsStore } from "~/stores/settings";
+import { Collapse, initCollapses } from "flowbite";
 
 const { settings } = useSettingsStore();
+
+const button = ref();
+const menu = ref();
 
 const query = gql`
   query getMenu {
@@ -45,6 +49,22 @@ const { data, error, status } = await useAsyncQuery(
     transform: (data) => flatListToHierarchical(data.menuItems.nodes),
   },
 );
+
+onMounted(() => {
+  useFlowbite(() => {
+    const collapse = new Collapse(menu.value, button.value);
+
+    const menuItems = menu.value.querySelectorAll("a");
+
+    if (menuItems) {
+      menuItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          collapse.collapse();
+        });
+      });
+    }
+  });
+});
 </script>
 
 <template>
@@ -64,6 +84,7 @@ const { data, error, status } = await useAsyncQuery(
             </NuxtLink>
             <div class="flex items-center lg:order-2">
               <button
+                ref="button"
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
                 class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -99,6 +120,7 @@ const { data, error, status } = await useAsyncQuery(
             </div>
             <div
               id="mobile-menu-2"
+              ref="menu"
               class="navigation hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 lg:ml-auto"
             >
               <TheNavigationList v-if="data" :data="data" />

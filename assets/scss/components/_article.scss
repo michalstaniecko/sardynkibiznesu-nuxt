@@ -2,14 +2,18 @@
 }
 
 .article__content {
-  @apply grid gap-3;
+  @apply grid gap-5;
 
   img {
     width: 100%;
   }
 
   a {
-    @apply underline;
+    @apply underline hover:text-primary-700;
     text-underline-offset: 2px;
+  }
+
+  > *:empty {
+    @apply m-0 p-0;
   }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MenuProps } from "~/@types/menu";
+import {} from "flowbite";
 
 const route = useRoute();
 
@@ -26,6 +27,11 @@ const activeClass = () => {
   }
   return "";
 };
+
+const handleClick = () => {
+  const menu = document.getElementById("mobile-menu-2");
+  console.log(menu);
+};
 </script>
 
 <template>
@@ -37,6 +43,7 @@ const activeClass = () => {
       exact-active-class=" "
       :class="activeClass()"
       type="button"
+      @click="handleClick"
       >{{ item.label }}</NuxtLink
     >
     <template v-if="item.children.length">
@@ -50,6 +57,7 @@ const activeClass = () => {
             <NuxtLink
               class="navigation-dropdown__link block pl-3 lg:px-4 lg:py-2 font-normal leading-7 lg:hover:bg-gray-100 lg:dark:hover:bg-gray-600 dark:hover:text-white"
               :href="child.path"
+              @click="handleClick"
               >{{ child.label }}</NuxtLink
             >
           </li>
