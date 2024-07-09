@@ -8,12 +8,16 @@
     width: 100%;
   }
 
-  a {
+  a:not(.button) {
     @apply underline hover:text-primary-700;
     text-underline-offset: 2px;
   }
 
   > *:empty {
     @apply m-0 p-0;
+  }
+
+  iframe {
+    @apply mx-auto w-full max-w-[560px];
   }
 }
