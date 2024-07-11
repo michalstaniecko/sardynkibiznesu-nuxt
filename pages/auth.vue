@@ -42,23 +42,29 @@ const handleLogin = async () => {
           <input
             id="password"
             v-model="password"
+            :readonly="pending"
             type="password"
             name="password"
             placeholder="••••••••"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            class="bg-gray-50 border readonly:bg-gray-200 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
           />
+          <div
+            v-if="errorMessage"
+            class="mt-1 text-xs text-red-600 font-normal dark:text-red-400"
+          >
+            {{ errorMessage }}
+          </div>
         </div>
 
         <button
           :disabled="pending"
           type="submit"
-          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full text-white bg-primary-700 hover:bg-primary-800 disabled:bg-primary-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           Login
         </button>
       </form>
-      <NuxtLink to="/">Home</NuxtLink>
     </div>
   </div>
 </template>
