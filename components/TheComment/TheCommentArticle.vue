@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { CommentProps } from "~/@types/post";
 
+const showForm = ref(false);
+
 const { comment } = defineProps<{
   comment: CommentProps;
 }>();
@@ -77,14 +79,12 @@ const date = useDateFormat(comment.date, "D MMMM, YYYY");
         </ul>
       </div>
     </footer>
-    <div>
-      id: {{ comment.databaseId }}, parent: {{ comment.parentDatabaseId }}
-    </div>
     <div v-html="comment.content" />
     <div class="flex items-center mt-4 space-x-4">
       <button
         type="button"
         class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+        @click.prevent="showForm = !showForm"
       >
         <svg
           class="mr-1.5 w-3.5 h-3.5"
@@ -104,7 +104,36 @@ const date = useDateFormat(comment.date, "D MMMM, YYYY");
         Reply
       </button>
     </div>
+    <transition name="height">
+      <div v-if="showForm">
+        <div>
+          <div class="pt-6">
+            <TheCommentForm :parent="comment.databaseId" />
+          </div>
+        </div>
+      </div>
+    </transition>
   </article>
 </template>
 
-<style scoped></style>
+<style scoped>
+.height-enter-from,
+.height-leave-to {
+  grid-template-rows: 0fr;
+}
+
+.height-enter-to,
+.height-leave-from {
+  grid-template-rows: 1fr;
+}
+
+.height-enter-active,
+.height-leave-active {
+  display: grid;
+  transition: grid-template-rows 0.3s;
+
+  > div {
+    overflow: hidden;
+  }
+}
+</style>

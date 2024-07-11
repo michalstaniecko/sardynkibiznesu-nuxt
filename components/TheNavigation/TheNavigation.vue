@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MenuProps } from "~/@types/menu";
 import { useSettingsStore } from "~/stores/settings";
-import { Collapse, initCollapses } from "flowbite";
+import { Collapse } from "flowbite";
 
 const { settings } = useSettingsStore();
 
@@ -68,7 +68,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white">
+  <div class="bg-white sticky top-0 shadow-md">
     <div class="max-w-screen-xxl mx-auto">
       <header>
         <nav
@@ -77,7 +77,7 @@ onMounted(() => {
           <div class="flex flex-wrap justify-between items-center">
             <NuxtLink to="/" class="flex items-center">
               <img
-                :src="settings.logo"
+                :src="settings!.logo!"
                 class="mr-3 h-6 sm:h-9"
                 alt="Flowbite Logo"
               />

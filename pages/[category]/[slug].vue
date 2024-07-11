@@ -15,6 +15,8 @@ if (!data.value?.post) {
     message: "Post not found",
   });
 }
+
+provide("postId", data.value.post.id);
 </script>
 
 <template>

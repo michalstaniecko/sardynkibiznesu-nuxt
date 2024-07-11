@@ -30,7 +30,6 @@ const activeClass = () => {
 
 const handleClick = () => {
   const menu = document.getElementById("mobile-menu-2");
-  console.log(menu);
 };
 </script>
 

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 defineProps<{
-  postId: number;
+  parent?: number;
 }>();
+
+const postId = inject<number>("postId")!;
 </script>
 
 <template>

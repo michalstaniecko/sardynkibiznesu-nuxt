@@ -18,6 +18,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    accessRestricted: false,
+    accessRestrictedPassword: "",
+    public: {},
+  },
   image: {
     inject: true,
     domains: [process.env.NUXT_API_BASE_URL ?? ""],
