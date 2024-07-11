@@ -7,10 +7,7 @@ defineProps<{
 <template>
   <form class="mb-6">
     <div class="grid gap-3">
-      <div>
-        <UiInput placeholder="Email" />
-      </div>
-      <div>
+      <div class="grid">
         <label for="comment" class="sr-only">Your comment</label>
         <textarea
           id="message"
@@ -18,6 +15,11 @@ defineProps<{
           class="p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write your thoughts here..."
         />
+      </div>
+      <div class="grid lg:grid-cols-3 gap-3">
+        <UiInput placeholder="Email" />
+        <UiInput placeholder="Name" />
+        <UiInput placeholder="Website" />
       </div>
       <div>
         <button

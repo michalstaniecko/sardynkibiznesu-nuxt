@@ -1,7 +1,24 @@
 import type { CategoryProps } from "~/@types/categories";
 
+export type CommentProps = {
+  author: {
+    node: {
+      avatar: {
+        url: string;
+      };
+      email: string;
+      name: string;
+    };
+  };
+  date: string;
+  content: string;
+  databaseId: number;
+  parentDatabaseId: number;
+  replies?: CommentProps[];
+};
+
 export type PostProps = {
-  id: string;
+  id: number;
   title: string;
   excerpt: string;
   content: string;
@@ -34,5 +51,8 @@ export type PostProps = {
       srcSet: string;
       sourceUrl: string;
     };
+  };
+  comments: {
+    nodes: CommentProps[];
   };
 };

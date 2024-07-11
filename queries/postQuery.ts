@@ -1,7 +1,7 @@
 export default gql`
   query getPost($id: ID!) {
     post(id: $id, idType: SLUG) {
-      id
+      id: databaseId
       title
       excerpt
       content
@@ -36,6 +36,23 @@ export default gql`
           id
           srcSet
           sourceUrl
+        }
+      }
+      comments(first: 999) {
+        nodes {
+          author {
+            node {
+              avatar {
+                url
+              }
+              email
+              name
+            }
+          }
+          date
+          content
+          databaseId
+          parentDatabaseId
         }
       }
     }

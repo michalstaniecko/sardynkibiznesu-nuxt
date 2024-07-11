@@ -32,7 +32,11 @@ if (!data.value?.post) {
       <ThePostMeta v-if="data" :post="data.post" />
     </div>
     <div class="article__content" v-html="data?.post?.content" />
-    <TheCommentList />
+    <TheCommentList
+      :post-id="data?.post?.id ?? 0"
+      :comments-count="data?.post.commentCount ?? 0"
+      :comments="data?.post?.comments?.nodes || null"
+    />
   </div>
 </template>
 
