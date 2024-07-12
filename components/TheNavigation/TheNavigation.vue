@@ -68,7 +68,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white sticky top-0 shadow-md">
+  <div class="bg-white sticky top-0 shadow-md z-50">
     <div class="max-w-screen-xxl mx-auto">
       <header>
         <nav
