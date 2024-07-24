@@ -35,4 +35,17 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  routeRules: {
+    "/": {
+      cache: {
+        maxAge: 60 * 60,
+      },
+    },
+    "/**": {
+      cache: {
+        maxAge: 60 * 60,
+      },
+    },
+  },
 });
