@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {enabled: true},
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/apollo",
@@ -21,11 +21,15 @@ export default defineNuxtConfig({
   runtimeConfig: {
     accessRestricted: false,
     accessRestrictedPassword: "",
-    public: {},
+    public: {
+      baseURL: process.env.NUXT_API_BASE_URL,
+    },
   },
   image: {
-    inject: true,
-    domains: [process.env.NUXT_API_BASE_URL ?? ""],
+    domains: ["sardynkibiznesu.pl"],
+    ipx: {
+      maxAge: 60 * 60 * 24 * 30,
+    }
   },
 
   apollo: {
@@ -37,15 +41,6 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/": {
-      cache: {
-        maxAge: 60 * 60,
-      },
-    },
-    "/**": {
-      cache: {
-        maxAge: 60 * 60,
-      },
-    },
+
   },
 });
