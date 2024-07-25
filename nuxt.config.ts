@@ -42,7 +42,13 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/**': {
-      swr: 60 * 60
+      swr: 60 * 60,
+      cache: {
+        maxAge: 60 * 60,
+      }
+    },
+    '/_ipx/**': {
+      cache: false
     }
   },
 });

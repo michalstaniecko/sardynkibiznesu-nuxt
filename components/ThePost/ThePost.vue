@@ -27,7 +27,7 @@ const errorHandler = (e) => {
           loading="lazy"
           :width="width"
           :height="height"
-          sizes="768px md:200px"
+          sizes="xs:100vw sm:768px md:200px"
           @error="errorHandler"
         />
       </nuxt-link>
