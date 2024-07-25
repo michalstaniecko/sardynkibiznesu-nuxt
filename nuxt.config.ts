@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     domains: ["sardynkibiznesu.pl"],
     ipx: {
       maxAge: 60 * 60 * 24 * 30,
-    }
+    },
   },
 
   apollo: {
@@ -41,6 +41,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-
+    '/**': {
+      swr: 60 * 60
+    }
   },
 });
