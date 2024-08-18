@@ -11,19 +11,19 @@ export default defineNuxtRouteMiddleware(async (to) => {
   // console.log("to", to.path);
 
   if (import.meta.server) {
-    if (accessRestrictedCookie.value === 1 && to.path !== "/auth") {
-      return navigateTo("/auth");
-    }
-
-    if (accessRestrictedCookie.value === 0 && to.path === "/auth") {
-      return navigateTo("/");
-    }
-
     if (hasAccess.value === 1 && to.path !== "/auth") {
       return;
     }
 
     if (hasAccess.value === 1 && to.path === "/auth") {
+      return navigateTo("/");
+    }
+
+    if (accessRestrictedCookie.value === 1 && to.path !== "/auth") {
+      return navigateTo("/auth");
+    }
+
+    if (accessRestrictedCookie.value === 0 && to.path === "/auth") {
       return navigateTo("/");
     }
 
