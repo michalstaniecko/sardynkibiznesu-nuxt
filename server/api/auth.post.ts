@@ -4,10 +4,10 @@ export default defineEventHandler(async (event) => {
     password: string;
   }>(event);
   console.log(body);
-  // const isValid =
-  //   body.password.toString() === config.accessRestrictedPassword.toString();
-  // if (isValid) {
-  //   setCookie(event, "hasAccess", "1");
-  // }
-  // return isValid;
+  const isValid =
+    body.password.toString() === config.accessRestrictedPassword.toString();
+  if (isValid) {
+    setCookie(event, "hasAccess", "1");
+  }
+  return isValid;
 });

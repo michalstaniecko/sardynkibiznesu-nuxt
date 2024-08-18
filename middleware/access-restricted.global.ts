@@ -1,32 +1,32 @@
 export default defineNuxtRouteMiddleware(async (to) => {
+  if (import.meta.client) return;
+
   const hasAccess = useCookie<number>("hasAccess");
   const accessRestrictedCookie = useCookie("accessRestricted");
 
-  console.log(hasAccess.value, accessRestrictedCookie.value);
-  if (import.meta.client) {
-    if (hasAccess.value === 1) {
-      if (to.path === "/auth") return navigateTo("/");
+  // console.log("server", import.meta.server);
+  // console.log("client", import.meta.client);
+  // console.log("hasAccess", hasAccess.value);
+  // console.log("accessRestrictedCookie", typeof accessRestrictedCookie.value);
+  // console.log("to", to.path);
+
+  if (import.meta.server) {
+    if (accessRestrictedCookie.value === 1 && to.path !== "/auth") {
+      return navigateTo("/auth");
+    }
+
+    if (accessRestrictedCookie.value === 0 && to.path === "/auth") {
+      return navigateTo("/");
+    }
+
+    if (hasAccess.value === 1 && to.path !== "/auth") {
       return;
     }
 
-    if (accessRestrictedCookie.value?.toString() === "1") {
-      if (to.path !== "/auth") return navigateTo("/auth");
-      return;
+    if (hasAccess.value === 1 && to.path === "/auth") {
+      return navigateTo("/");
     }
+
     return;
   }
-  // if (import.meta.server) {
-  //   accessRestrictedCookie.value = config.accessRestricted === true ? "1" : "0";
-  // }
-  // const isAccessRestricted =
-  //   config.accessRestricted === true ||
-  //   accessRestrictedCookie.value?.toString() === "1";
-  //
-  // if (hasAccess.value === 1 && to.path !== "/auth") return;
-  //
-  // if (hasAccess.value === 1 && to.path === "/auth") return navigateTo("/");
-  //
-  // if (isAccessRestricted && to.path !== "/auth") return navigateTo("/auth");
-  //
-  // if (!isAccessRestricted && to.path === "/auth") return navigateTo("/");
 });
