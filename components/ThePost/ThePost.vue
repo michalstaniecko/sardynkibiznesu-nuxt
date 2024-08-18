@@ -1,27 +1,18 @@
 <script setup lang="ts">
 import type { PostProps } from "~/@types/post";
 
-const img = useImage();
-
 const { post } = defineProps<{
   post: PostProps;
 }>();
 
-const imageSmall = post.featuredImage?.node?.mediaDetails?.sizes?.[0];
-
 const imageFull = post.featuredImage?.node;
-
-const imageUrl = imageSmall?.sourceUrl || imageFull?.sourceUrl;
-
-const src = ref(`${imageUrl}.webp`);
 
 const ratio = 768 / imageFull?.mediaDetails.width;
 
 const width = 768;
 const height = ratio * imageFull?.mediaDetails.height;
 
-const errorHandler = () => {
-  src.value = imageUrl;
+const errorHandler = (e) => {
 };
 </script>
 
@@ -36,7 +27,7 @@ const errorHandler = () => {
           loading="lazy"
           :width="width"
           :height="height"
-          sizes="768px md:200px"
+          sizes="xs:100vw sm:768px md:200px"
           @error="errorHandler"
         />
       </nuxt-link>

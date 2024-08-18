@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {enabled: true},
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/apollo",
@@ -21,7 +21,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     accessRestricted: false,
     accessRestrictedPassword: "",
-    public: {},
+    public: {
+      baseURL: process.env.NUXT_API_BASE_URL,
+    },
   },
   image: {
     inject: true,
