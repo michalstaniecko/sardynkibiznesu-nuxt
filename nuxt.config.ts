@@ -9,7 +9,14 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxt/image",
     "@vueuse/nuxt",
+    "@nuxtjs/i18n",
   ],
+  i18n: {
+    strategy: "prefix_except_default",
+    locales: ["en", "pl"],
+    defaultLocale: "en",
+    vueI18n: "./i18n.config.ts",
+  },
   css: ["~/assets/scss/main.scss"],
   postcss: {
     plugins: {

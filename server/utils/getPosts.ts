@@ -14,6 +14,8 @@ export const getPosts = defineCachedFunction(
       params: args,
     });
 
+    //console.log(results[0]);
+
     return await Promise.all(
       results.map(async (post) => {
         const featuredMedia = await getMedia(event, post.featured_media);
