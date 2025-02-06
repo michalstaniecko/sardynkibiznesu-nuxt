@@ -1,70 +1,5 @@
 <script setup lang="ts">
-import type { MenuProps } from "~/@types/menu";
-import { useSettingsStore } from "~/stores/settings";
-import { Collapse } from "flowbite";
-
-const { settings } = useSettingsStore();
-
-const button = ref();
-const menu = ref();
-
-const query = gql`
-  query getMenu {
-    menuItems(first: 999, where: { location: PRIMARY_MENU }) {
-      nodes {
-        id
-        label
-        path
-        parentId
-        uri
-        target
-      }
-    }
-  }
-`;
-
-const flatListToHierarchical = (
-  data = [],
-  { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {},
-): MenuProps[] => {
-  const tree = [];
-  const childrenOf = {};
-  data.forEach((item) => {
-    const newItem = { ...item };
-    const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
-    childrenOf[id] = childrenOf[id] || [];
-    newItem[childrenKey] = childrenOf[id];
-    parentId
-      ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
-      : tree.push(newItem);
-  });
-  return tree;
-};
-
-const variables = {};
-
-const { data, error, status } = await useAsyncQuery(
-  { query, variables },
-  {
-    transform: (data) => flatListToHierarchical(data.menuItems.nodes),
-  },
-);
-
-onMounted(() => {
-  useFlowbite(() => {
-    const collapse = new Collapse(menu.value, button.value);
-
-    const menuItems = menu.value.querySelectorAll("a");
-
-    if (menuItems) {
-      menuItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          collapse.collapse();
-        });
-      });
-    }
-  });
-});
+const logoUrl = "https://flowbite.com/images/logo.svg";
 </script>
 
 <template>
@@ -77,9 +12,9 @@ onMounted(() => {
           <div class="flex flex-wrap justify-between items-center">
             <NuxtLink to="/" class="flex items-center">
               <img
-                :src="settings!.logo!"
+                :src="logoUrl"
                 class="mr-3 h-6 sm:h-9"
-                alt="Flowbite Logo"
+                alt="Sardynki Biznesu"
               />
             </NuxtLink>
             <div class="flex items-center lg:order-2">
@@ -123,7 +58,7 @@ onMounted(() => {
               ref="menu"
               class="navigation hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 lg:ml-auto"
             >
-              <TheNavigationList v-if="data" :data="data" />
+              <TheNavigationList />
             </div>
           </div>
         </nav>

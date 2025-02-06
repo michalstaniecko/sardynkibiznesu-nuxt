@@ -1,47 +1,30 @@
 <script setup lang="ts">
-import type { PostProps } from "~/@types/post";
+import type { PostExcerpt } from "~/@types/post";
 
 const { post } = defineProps<{
-  post: PostProps;
+  post: PostExcerpt;
 }>();
-
-const imageFull = post.featuredImage?.node;
-
-const ratio = 768 / imageFull?.mediaDetails.width;
-
-const width = 768;
-const height = ratio * imageFull?.mediaDetails.height;
-
-const errorHandler = (e) => {
-};
+const title = post.title;
+const uri = post.slug;
+const excerpt = post.excerpt;
+const imageUrl = post.featuredMedia.file;
 </script>
 
 <template>
   <div class="grid md:grid-cols-[200px_1fr] gap-5">
     <div>
-      <nuxt-link :to="post.uri">
-        <NuxtImg
-          :src="imageFull.sourceUrl"
-          :alt="post.title"
-          format="webp"
-          loading="lazy"
-          :width="width"
-          :height="height"
-          sizes="xs:100vw sm:768px md:200px"
-          @error="errorHandler"
-        />
+      <nuxt-link :to="uri">
+        <NuxtImg :src="imageUrl" />
       </nuxt-link>
     </div>
     <div class="grid">
-      <nuxt-link :to="post.uri" class="">
-        <h2 class="text-2xl">{{ post.title }}</h2>
+      <nuxt-link :to="uri" class="">
+        <h2 class="text-2xl">{{ title }}</h2>
       </nuxt-link>
-      <ThePostMeta :post="post" />
-      <div class="py-5" v-html="post.excerpt" />
+      <ThePostMeta />
+      <div class="py-5" v-html="excerpt" />
       <div>
-        <nuxt-link :to="post.uri" class="text-primary-500">
-          Czytaj dalej
-        </nuxt-link>
+        <nuxt-link :to="uri" class="text-primary-500"> Czytaj dalej </nuxt-link>
       </div>
     </div>
   </div>

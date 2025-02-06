@@ -1,14 +1,5 @@
-<script setup lang="ts">
-defineProps<{
-  author: {
-    name: string;
-    uri: string;
-  };
-}>();
-</script>
+<script setup lang="ts"></script>
 
-<template>
-  Autor <NuxtLink :to="author.uri">{{ author.name }} </NuxtLink>
-</template>
+<template>Autor <NuxtLink to="/">Radek Klimek</NuxtLink></template>
 
 <style scoped></style>

@@ -1,58 +1,53 @@
-import type { CategoryProps } from "~/@types/categories";
-
-export type CommentProps = {
-  author: {
-    node: {
-      avatar: {
-        url: string;
-      };
-      email: string;
-      name: string;
-    };
-  };
-  date: string;
-  content: string;
-  databaseId: number;
-  parentDatabaseId: number;
-  replies?: CommentProps[];
-};
-
-export type PostProps = {
+export type PostExcerpt = {
   id: number;
   title: string;
   excerpt: string;
-  content: string;
+  createdAt: string;
   slug: string;
-  uri: string;
-  author: {
-    node: {
-      name: string;
-      uri: string;
-    };
+  featuredMedia: {
+    file: string;
   };
-  categories: {
-    nodes: CategoryProps[];
-  };
+};
+
+export type Response = {
+  id: number;
   date: string;
-  commentCount?: number;
-  featuredImage: {
-    node: {
-      mediaDetails: {
-        sizes: {
-          sourceUrl: string;
-          name: string;
-          width: number;
-          height: number;
-        }[];
-        width: number;
-        height: number;
-      };
-      id: string;
-      srcSet: string;
-      sourceUrl: string;
-    };
+  slug: string;
+  title: {
+    rendered: string;
   };
-  comments: {
-    nodes: CommentProps[];
+  excerpt: {
+    rendered: string;
   };
+  featured_media: number;
+};
+
+export enum Order {
+  ASC = "asc",
+  DESC = "desc",
+}
+
+export enum Orderby {
+  DATE = "date",
+  ID = "id",
+  INCLUDE = "include",
+  TITLE = "title",
+  SLUG = "slug",
+}
+
+export enum Status {
+  PUBLISH = "publish",
+}
+
+export type Arguments = {
+  per_page?: number;
+  offset?: number;
+  order?: Order;
+  orderby?: Orderby;
+  slug?: string[];
+  status?: Status;
+  categories?: string[];
+  categories_exclude?: string[];
+  tags?: string[];
+  tags_exclude?: string[];
 };

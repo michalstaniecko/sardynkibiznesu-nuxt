@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { SpeedInsights } from "@vercel/speed-insights/vue";
-import { useSettingsStore } from "~/stores/settings";
+import {SpeedInsights} from "@vercel/speed-insights/vue";
 
-const settingsStore = useSettingsStore();
-
-await settingsStore.init();
 </script>
 
 <template>
-  <NuxtLoadingIndicator />
+  <NuxtLoadingIndicator/>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage/>
   </NuxtLayout>
-  <SpeedInsights />
+  <SpeedInsights/>
 </template>

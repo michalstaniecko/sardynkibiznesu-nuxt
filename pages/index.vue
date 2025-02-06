@@ -1,32 +1,36 @@
 <script setup lang="ts">
-import type { PostProps } from "~/@types/post";
+import type { Arguments } from "~/@types/post";
 
 definePageMeta({
   layout: "no-breadcrumb",
 });
 
-const posts = ref<PostProps[]>([]);
+const offset = ref(0);
+const perPage = 5;
 
-const { loadMore, status, data } = usePostsQuery();
+const args: Arguments = {
+  per_page: perPage,
+  offset: offset.value,
+};
 
-await loadMore().then(() => true);
+const { status, data: posts } = useFetch("/api/posts", {
+  params: args,
+});
 
-posts.value = data.value?.posts.nodes || [];
-
-const handleLoadMore = async () => {
-  await loadMore();
-  posts.value = data.value?.posts.nodes
-    ? [...posts.value, ...data.value.posts.nodes]
-    : posts.value;
+const loadMore = async () => {
+  offset.value += perPage;
+  const response = await $fetch("/api/posts", {
+    params: {
+      ...args,
+      offset: offset.value,
+    },
+  });
+  posts.value = [...posts.value, ...response];
 };
 </script>
 
 <template>
-  <ThePostList
-    :posts="posts"
-    :status="status"
-    :handle-load-more="handleLoadMore"
-  />
+  <ThePostList :posts="posts" @load-more="loadMore" />
 </template>
 
 <style scoped></style>

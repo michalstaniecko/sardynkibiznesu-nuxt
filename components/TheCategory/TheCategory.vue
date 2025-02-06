@@ -1,29 +1,4 @@
-<script setup lang="ts">
-import type { PostProps } from "~/@types/post";
-
-const { loadMore, posts } = defineProps<{
-  status: string;
-  loadMore: () => Promise<void>;
-  category: {
-    name: string;
-    description: string;
-  };
-  posts: {
-    pageInfo: {
-      hasNextPage: boolean;
-      endCursor: string;
-    };
-    nodes: PostProps[];
-  };
-}>();
-
-const postsRef = ref<PostProps[]>(posts.nodes);
-
-const handleLoadMore = async () => {
-  await loadMore();
-  postsRef.value = postsRef.value.concat(posts.nodes);
-};
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="grid gap-10">

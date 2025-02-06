@@ -1,9 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: {enabled: true},
+  devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/apollo",
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@vueuse/nuxt",
@@ -19,35 +18,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    accessRestricted: false,
-    accessRestrictedPassword: "",
-    public: {
-      baseURL: process.env.NUXT_API_BASE_URL,
-    },
+    apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost",
+    apiBasePath: process.env.NUXT_API_BASE_PATH || "/wp-json/wp/v2",
   },
-  image: {
-    inject: true,
-    domains: [process.env.NUXT_API_BASE_URL ?? ""],
-  },
-
-  apollo: {
-    clients: {
-      default: {
-        httpEndpoint: `${process.env.NUXT_API_BASE_URL}/graphql`,
-      },
-    },
-  },
-
-  // routeRules: {
-  //   "/": {
-  //     cache: {
-  //       maxAge: 60 * 60,
-  //     },
-  //   },
-  //   "/**": {
-  //     cache: {
-  //       maxAge: 60 * 60,
-  //     },
-  //   },
-  // },
 });

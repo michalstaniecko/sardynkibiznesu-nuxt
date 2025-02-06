@@ -1,17 +1,7 @@
-<script setup lang="ts">
-import type { CategoryProps } from "~/@types/categories";
-
-const { categories } = defineProps<{
-  categories: { nodes: CategoryProps[] };
-}>();
-
-const category = categories.nodes[0];
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <NuxtLink :to="category.uri">
-    {{ category.name }}
-  </NuxtLink>
+  <NuxtLink to="/"> Category </NuxtLink>
 </template>
 
 <style scoped></style>
