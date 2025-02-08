@@ -9,10 +9,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <li>
-    <TheNavigationLink v-if="!props.children" v-bind="props" />
-    <TheNavigationDropdown v-if="props.children" v-bind="props" />
-  </li>
+  <RouterLink
+    :to="props.url"
+    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+    >{{ props.label }}</RouterLink
+  >
 </template>
 
 <style scoped></style>

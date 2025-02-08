@@ -10,8 +10,8 @@ const props = defineProps<{
 
 <template>
   <li>
-    <TheNavigationLink v-if="!props.children" v-bind="props" />
-    <TheNavigationDropdown v-if="props.children" v-bind="props" />
+    <TheNavigationChildLink v-if="!props.children" v-bind="props" />
+    <TheNavigationChildDropdown v-if="props.children" v-bind="props" />
   </li>
 </template>
 
