@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const post = await getPost(event, slug);
+    const post = await getPost(event, undefined, slug);
     return post;
   } catch (error) {
     throw createError({

@@ -8,6 +8,7 @@ export enum ResponseFields {
   CONTENT = "content",
   FEATURED_MEDIA = "featured_media",
   LINK = "link",
+  TEMPLATE = "template",
 }
 
 export type PostExcerpt = {
@@ -31,6 +32,7 @@ export type Post = {
   featuredMedia: {
     file: string;
   };
+  template?: string;
 };
 
 export type Response = {
@@ -49,6 +51,7 @@ export type Response = {
   };
   [ResponseFields.FEATURED_MEDIA]: number;
   [ResponseFields.LINK]: string;
+  [ResponseFields.TEMPLATE]: string;
 };
 
 export enum Order {
@@ -81,3 +84,10 @@ export type Arguments = {
   tags_exclude?: string[];
   "_fields[]"?: string[];
 };
+
+export enum ContentTypes {
+  POSTS = "posts",
+  PAGES = "pages",
+  CATEGORIES = "categories",
+  TAGS = "tags",
+}
