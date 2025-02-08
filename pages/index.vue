@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Arguments } from "~/@types/post";
+import type { Arguments, PostExcerpt } from "~/@types/post";
+import { ResponseFields } from "~/@types/post";
 
 definePageMeta({
   layout: "no-breadcrumb",
@@ -11,9 +12,12 @@ const perPage = 5;
 const args: Arguments = {
   per_page: perPage,
   offset: offset.value,
+  "_fields[]": Object.values(ResponseFields).filter(
+    (field) => field !== ResponseFields.CONTENT,
+  ),
 };
 
-const { status, data: posts } = useFetch("/api/posts", {
+const { status, data: posts } = useFetch<PostExcerpt[]>("/api/posts", {
   params: args,
 });
 
@@ -30,7 +34,12 @@ const loadMore = async () => {
 </script>
 
 <template>
-  <ThePostList :posts="posts" @load-more="loadMore" />
+  <div v-if="posts">
+    <ThePostList :posts="posts" @load-more="loadMore" />
+  </div>
+  <div v-else>
+    <div class="text-center py-10">No posts</div>
+  </div>
 </template>
 
 <style scoped></style>

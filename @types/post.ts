@@ -1,3 +1,15 @@
+export enum ResponseFields {
+  ID = "id",
+  DATE = "date",
+  MODIFIED = "modified",
+  SLUG = "slug",
+  TITLE = "title",
+  EXCERPT = "excerpt",
+  CONTENT = "content",
+  FEATURED_MEDIA = "featured_media",
+  LINK = "link",
+}
+
 export type PostExcerpt = {
   id: number;
   title: string;
@@ -9,17 +21,34 @@ export type PostExcerpt = {
   };
 };
 
-export type Response = {
+export type Post = {
   id: number;
-  date: string;
+  title: string;
+  excerpt?: string;
+  content: string;
+  createdAt: string;
   slug: string;
-  title: {
+  featuredMedia: {
+    file: string;
+  };
+};
+
+export type Response = {
+  [ResponseFields.ID]: number;
+  [ResponseFields.DATE]: string;
+  [ResponseFields.MODIFIED]: string;
+  [ResponseFields.SLUG]: string;
+  [ResponseFields.TITLE]: {
     rendered: string;
   };
-  excerpt: {
+  [ResponseFields.EXCERPT]: {
     rendered: string;
   };
-  featured_media: number;
+  [ResponseFields.CONTENT]: {
+    rendered: string;
+  };
+  [ResponseFields.FEATURED_MEDIA]: number;
+  [ResponseFields.LINK]: string;
 };
 
 export enum Order {
@@ -50,4 +79,5 @@ export type Arguments = {
   categories_exclude?: string[];
   tags?: string[];
   tags_exclude?: string[];
+  "_fields[]"?: string[];
 };

@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  site: {
+    url: "http://localhost:3000",
+    name: "Sardynki Biznesu",
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
@@ -10,6 +14,8 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
+    "@nuxtjs/seo",
+    "@nuxtjs/sitemap",
   ],
   i18n: {
     strategy: "prefix_except_default",
@@ -27,5 +33,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost",
     apiBasePath: process.env.NUXT_API_BASE_PATH || "/wp-json/wp/v2",
+  },
+  sitemap: {
+    sources: ["/api/__sitemap__/urls"],
   },
 });

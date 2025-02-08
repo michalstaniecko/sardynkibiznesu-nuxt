@@ -1,6 +1,7 @@
 import type { H3Event } from "h3";
 import { getMedia } from "~/server/utils/getMedia";
 import type { Response, Arguments } from "~/@types/post";
+import { ResponseFields } from "~/@types/post";
 
 const initArguments: Arguments = {
   per_page: 10,
@@ -14,15 +15,17 @@ export const getPosts = defineCachedFunction(
       params: args,
     });
 
-    //console.log(results[0]);
-
     return await Promise.all(
       results.map(async (post) => {
         const featuredMedia = await getMedia(event, post.featured_media);
+        const slug = post[ResponseFields.LINK].replace(
+          runtimeConfig.apiBaseUrl,
+          "",
+        );
         return {
           id: post.id,
-          createdAt: post.date,
-          slug: post.slug,
+          createdAt: post[ResponseFields.DATE],
+          slug: slug,
           title: post.title.rendered,
           excerpt: post.excerpt.rendered,
           featuredMedia,
