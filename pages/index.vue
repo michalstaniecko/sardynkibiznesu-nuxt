@@ -23,12 +23,15 @@ const { status, data: posts } = useFetch<PostExcerpt[]>("/api/posts", {
 
 const loadMore = async () => {
   offset.value += perPage;
-  const response = await $fetch("/api/posts", {
+  const response = await $fetch<PostExcerpt[]>("/api/posts", {
     params: {
       ...args,
       offset: offset.value,
     },
   });
+  if (!posts.value) {
+    posts.value = [];
+  }
   posts.value = [...posts.value, ...response];
 };
 </script>
