@@ -14,7 +14,13 @@ const imageUrl = post.featuredMedia.file;
   <div class="grid md:grid-cols-[200px_1fr] gap-5">
     <div>
       <nuxt-link :to="uri">
-        <NuxtImg :src="imageUrl" format="webp" width="712" height="401" />
+        <NuxtImg
+          sizes="100vw sm:400px md:712px"
+          :src="imageUrl"
+          format="webp"
+          width="712"
+          height="401"
+        />
       </nuxt-link>
     </div>
     <div class="grid">
