@@ -22,6 +22,7 @@ const imageUrl = post.featuredMedia.file;
           width="712"
           height="401"
           :loading="index === 0 ? 'eager' : 'lazy'"
+          :preload="index === 0"
           quality="90"
         />
       </nuxt-link>
