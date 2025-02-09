@@ -14,4 +14,7 @@ export const getMedia = defineCachedFunction(
       file: results.source_url,
     };
   },
+  {
+    swr: false,
+  },
 );
