@@ -16,7 +16,12 @@ const handleLoadMore = () => {
 <template>
   <div>
     <div class="grid gap-10">
-      <ThePost v-for="post in posts" :key="post.id" :post="post" />
+      <ThePost
+        v-for="(post, index) in posts"
+        :key="post.id"
+        :index="index"
+        :post="post"
+      />
     </div>
     <div class="text-center py-10">
       <button

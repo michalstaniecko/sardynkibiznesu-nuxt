@@ -3,6 +3,7 @@ import type { PostExcerpt } from "~/@types/post";
 
 const { post } = defineProps<{
   post: PostExcerpt;
+  index?: number;
 }>();
 const title = post.title;
 const uri = post.slug;
@@ -15,12 +16,12 @@ const imageUrl = post.featuredMedia.file;
     <div>
       <nuxt-link :to="uri">
         <NuxtImg
-          sizes="320px xs:640px sm:712px md:712px"
+          sizes="320px xs:640px sm:712px md:712px lg:712px xl:712px"
           :src="imageUrl"
           format="webp"
           width="712"
           height="401"
-          loading="lazy"
+          :loading="index === 0 ? 'eager' : 'lazy'"
           quality="90"
         />
       </nuxt-link>
