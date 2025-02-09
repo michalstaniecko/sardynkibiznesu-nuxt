@@ -17,6 +17,10 @@ export const getCategories = defineCachedFunction(
     return response;
   },
   {
-    swr: false,
+    maxAge: 60 * 60 * 1000,
+    name: "categories",
+    getKey: (_event, slug: string | undefined) => {
+      return slug ? `categories/${slug}` : "categories";
+    },
   },
 );

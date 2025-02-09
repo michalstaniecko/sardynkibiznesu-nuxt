@@ -46,4 +46,7 @@ export default defineNuxtConfig({
       xl: 1280,
     },
   },
+  routeRules: {
+    "/**": { swr: true },
+  },
 });
