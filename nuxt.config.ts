@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   i18n: {
     strategy: "prefix_except_default",
     locales: ["en", "pl"],
-    defaultLocale: "en",
+    defaultLocale: "pl",
     vueI18n: "./i18n.config.ts",
   },
   css: ["~/assets/scss/main.scss"],

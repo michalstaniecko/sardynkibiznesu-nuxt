@@ -8,17 +8,18 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { data, error } = await useFetch<Post>(`/api/page/${route.params.slug}`, {
+const { data } = await useFetch<Post>(`/api/page/${route.params.slug}`, {
   method: "GET",
   params: {
     slug: route.params.slug,
   },
 });
 
-if (error.value) {
+if (!data.value) {
   throw createError({
-    statusCode: error.value?.statusCode,
-    message: error.value?.statusMessage,
+    statusCode: 404,
+    message: "Page not found",
+    fatal: true,
   });
 }
 

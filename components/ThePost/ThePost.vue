@@ -24,12 +24,13 @@ const imageUrl = post.featuredMedia.file;
           :loading="index === 0 ? 'eager' : 'lazy'"
           :preload="index === 0"
           quality="90"
+          :alt="title"
         />
       </nuxt-link>
     </div>
     <div class="grid">
       <nuxt-link :to="uri" class="">
-        <h2 class="text-2xl">{{ title }}</h2>
+        <h2 class="text-2xl" v-html="title" />
       </nuxt-link>
       <ThePostMeta />
       <div class="py-5" v-html="excerpt" />

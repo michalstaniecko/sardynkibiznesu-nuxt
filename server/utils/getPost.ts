@@ -22,11 +22,8 @@ export const getPost = defineCachedFunction(
       },
     );
 
-    if (posts.length !== 1 || !posts) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Not Found",
-      });
+    if (posts.length !== 1) {
+      return null;
     }
 
     const post = posts[0];

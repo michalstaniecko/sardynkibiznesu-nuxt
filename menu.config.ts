@@ -50,27 +50,27 @@ export default [
     children: [
       {
         label: "Podcasty",
-        url: "#",
+        url: "/kategorie/podcasty",
       },
       {
         label: "Dingsy",
-        url: "#",
+        url: "/kategorie/dingsy",
       },
       {
         label: "Przydatne Programy Przedsiębiorcy",
-        url: "#",
+        url: "/kategorie/przydatne-programy-przedsiebiorcy",
       },
       {
         label: "Bierzcie i korzystajcie",
-        url: "#",
+        url: "/kategorie/przydatne-materialy",
       },
       {
         label: "Przydatne Książki Przedsiębiorcy",
-        url: "#",
+        url: "/kategorie/przydatne-ksiazki-przedsiebiorcy",
       },
       {
         label: "Prawo po ludzkiemu",
-        url: "#",
+        url: "/kategorie/prawo",
       },
     ],
   },
@@ -145,7 +145,7 @@ export default [
   },
   {
     label: "O blogu",
-    url: "/o-blogu",
+    url: "/blogu",
   },
   {
     label: "Kontakt",

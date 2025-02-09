@@ -1,8 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+onMounted(() => {
+  useFlowbite((flowbite) => {
+    flowbite.initFlowbite();
+  });
+});
+</script>
 
 <template>
   <div>
     <TheHeader />
+    <div class="p-3">breadcrumbs</div>
     <div class="layout layout-default">
       <div class="layout__content">
         <slot />
