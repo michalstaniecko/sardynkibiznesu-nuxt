@@ -20,6 +20,8 @@ const imageUrl = post.featuredMedia.file;
           format="webp"
           width="712"
           height="401"
+          loading="lazy"
+          quality="90"
         />
       </nuxt-link>
     </div>
