@@ -32,15 +32,17 @@ Kontakt
 export default [
   {
     label: "Tu zacznij",
-    url: "#",
+    url: "/tu-zacznij",
   },
   {
     label: "Panel",
-    url: "#",
+    url: "https://panel.sardynkibiznesu.pl",
+    target: "_blank",
+    isExternal: true,
   },
   {
     label: "Newsletter",
-    url: "#",
+    url: "/zapis-na-newsletter",
   },
   {
     label: "Twórczość",
@@ -143,10 +145,10 @@ export default [
   },
   {
     label: "O blogu",
-    url: "#",
+    url: "/o-blogu",
   },
   {
     label: "Kontakt",
-    url: "#",
+    url: "/kontakt",
   },
 ];

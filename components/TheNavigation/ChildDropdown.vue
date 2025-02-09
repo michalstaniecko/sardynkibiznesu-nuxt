@@ -1,17 +1,15 @@
 <script setup lang="ts">
-const props = defineProps<{
-  label: string;
-  url: string;
-  ariaCurrent?: string;
-  target?: string;
-  children?: any;
-}>();
+import type { MenuItem } from "~/@types/menu";
+
+const props = defineProps<MenuItem>();
+
+const dropdownId = `dropdownNavbar-${props.level}-${props.index}`;
 </script>
 
 <template>
   <button
     id="doubleDropdownButton"
-    data-dropdown-toggle="doubleDropdown"
+    :data-dropdown-toggle="dropdownId"
     data-dropdown-placement="right-start"
     type="button"
     class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -34,8 +32,8 @@ const props = defineProps<{
     </svg>
   </button>
   <div
-    id="doubleDropdown"
-    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+    :id="dropdownId"
+    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-md w-44 dark:bg-gray-700"
   >
     <ul
       class="py-2 text-sm text-gray-700 dark:text-gray-200"

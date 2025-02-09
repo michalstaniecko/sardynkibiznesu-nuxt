@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import {SpeedInsights} from "@vercel/speed-insights/vue";
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 
+onMounted(() => {
+  useFlowbite((flowbite) => {
+    flowbite.initFlowbite();
+  });
+});
 </script>
 
 <template>
-  <NuxtLoadingIndicator/>
+  <NuxtLoadingIndicator />
   <NuxtLayout>
-    <NuxtPage/>
+    <NuxtPage />
   </NuxtLayout>
-  <SpeedInsights/>
+  <SpeedInsights />
 </template>

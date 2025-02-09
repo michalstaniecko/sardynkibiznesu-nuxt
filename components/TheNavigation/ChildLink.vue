@@ -1,11 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
-  label: string;
-  url: string;
-  ariaCurrent?: string;
-  target?: string;
-  children?: any;
-}>();
+import type { MenuItem } from "~/@types/menu";
+
+const props = defineProps<MenuItem>();
 </script>
 
 <template>

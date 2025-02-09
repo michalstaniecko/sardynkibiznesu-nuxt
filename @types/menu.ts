@@ -7,3 +7,14 @@ export type MenuProps = {
   children: MenuProps[];
   target?: string;
 };
+
+export type MenuItem = {
+  label: string;
+  url: string;
+  ariaCurrent?: string;
+  target?: string;
+  children?: any;
+  index?: number;
+  level?: number;
+  isExternal?: boolean;
+};
