@@ -15,7 +15,7 @@ const imageUrl = post.featuredMedia.file;
     <div>
       <nuxt-link :to="uri">
         <NuxtImg
-          sizes="640px sm:712px md:712px"
+          sizes="320px xs:640px sm:712px md:712px"
           :src="imageUrl"
           format="webp"
           width="712"
