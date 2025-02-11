@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     url: "http://localhost:3000",
     name: "Sardynki Biznesu",
   },
+  nitro: {
+    preset: "cloudflare-pages",
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
@@ -50,7 +53,7 @@ export default defineNuxtConfig({
     // "/**": { isr: 60 * 60 },
     "/api/**": {
       cache: {
-        maxAge: 60 * 60,
+        //maxAge: 60 * 60,
       },
     },
   },

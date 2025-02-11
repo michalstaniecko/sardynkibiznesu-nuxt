@@ -17,7 +17,7 @@ const args: Arguments = {
   ),
 };
 
-const { status, data: posts } = await useFetch<PostExcerpt[]>("/api/posts", {
+const { data: posts } = await useFetch<PostExcerpt[]>("/api/posts", {
   params: args,
 });
 
