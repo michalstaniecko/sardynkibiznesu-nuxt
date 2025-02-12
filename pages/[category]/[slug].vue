@@ -25,7 +25,7 @@ if (error.value) {
     <NuxtImg :src="data.featuredMedia.file" :alt="data.title" />
     <h1>{{ data.title }}</h1>
     <ThePostMeta />
-    <div v-html="data.content" />
+    <TheContent :content="data.content" />
     <div v-if="error">{{ error }}</div>
   </div>
 </template>

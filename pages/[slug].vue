@@ -40,7 +40,7 @@ if (data.value) {
 
 <template>
   <NuxtLayout :name="layout">
-    <div v-if="data" v-html="data.content" />
+    <TheContent v-if="data" :content="data.content" />
   </NuxtLayout>
 </template>
 
