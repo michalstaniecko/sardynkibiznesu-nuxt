@@ -5,6 +5,7 @@ import type { PostExcerpt } from "~/@types/post";
 defineI18nRoute({
   paths: {
     pl: "/kategorie/[category]",
+    en: "/category/[category]",
   },
 });
 

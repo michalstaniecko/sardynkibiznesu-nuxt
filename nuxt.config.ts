@@ -4,7 +4,9 @@ export default defineNuxtConfig({
     url: "http://localhost:3000",
     name: "Sardynki Biznesu",
   },
+
   devtools: { enabled: true },
+
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
@@ -17,27 +19,33 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxtjs/sitemap",
   ],
+
   i18n: {
     strategy: "prefix_except_default",
-    locales: ["pl"],
-    defaultLocale: "pl",
+    locales: [process.env.NUXT_DEFAULT_LOCALE!],
+    defaultLocale: process.env.NUXT_DEFAULT_LOCALE!,
     vueI18n: "./i18n.config.ts",
     detectBrowserLanguage: false,
   },
+
   css: ["~/assets/scss/main.scss"],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   runtimeConfig: {
     apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost",
     apiBasePath: process.env.NUXT_API_BASE_PATH || "/wp-json/wp/v2",
   },
+
   sitemap: {
     sources: ["/api/__sitemap__/urls"],
   },
+
   image: {
     domains: [process.env.NUXT_IMAGE_DOMAINS || "localhost"],
     screens: {
@@ -48,6 +56,7 @@ export default defineNuxtConfig({
       xl: 1280,
     },
   },
+
   routeRules: {
     // "/**": { isr: 60 * 60 },
     "/api/**": {
@@ -56,4 +65,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: "2025-02-12",
 });

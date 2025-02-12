@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import menu from "@/menu.config";
+const { locale } = useI18n();
+const langMenu = menu[locale.value];
 </script>
 
 <template>
@@ -9,15 +11,12 @@ import menu from "@/menu.config";
         to="/"
         class="flex items-center space-x-3 rtl:space-x-reverse"
       >
-        <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          class="h-8"
-          alt="Flowbite Logo"
+        <NuxtImg
+          format="webp"
+          width="341"
+          height="40"
+          src="https://smallfishbusiness.com/wp-content/uploads/2021/11/logo-small-fish-business.png"
         />
-        <span
-          class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-          >Flowbite</span
-        >
       </RouterLink>
     </template>
     <template #menulist>
@@ -25,7 +24,7 @@ import menu from "@/menu.config";
         class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 xl:space-x-8 rtl:space-x-reverse xl:flex-row xl:mt-0 md:border-0 xl:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <TheNavigationItem
-          v-for="(item, index) in menu"
+          v-for="(item, index) in langMenu"
           v-bind="item"
           :key="index"
           :level="0"
