@@ -9,6 +9,7 @@ export enum ResponseFields {
   FEATURED_MEDIA = "featured_media",
   LINK = "link",
   TEMPLATE = "template",
+  CATEGORIES = "categories",
 }
 
 export type PostExcerpt = {
@@ -20,6 +21,7 @@ export type PostExcerpt = {
   featuredMedia: {
     file: string;
   };
+  categories: number[];
 };
 
 export type Post = {
@@ -33,6 +35,7 @@ export type Post = {
     file: string;
   };
   template?: string;
+  categories: number[];
 };
 
 export type Response = {
@@ -52,6 +55,7 @@ export type Response = {
   [ResponseFields.FEATURED_MEDIA]: number;
   [ResponseFields.LINK]: string;
   [ResponseFields.TEMPLATE]: string;
+  [ResponseFields.CATEGORIES]: number[];
 };
 
 export enum Order {

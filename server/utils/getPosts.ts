@@ -29,6 +29,7 @@ export const getPosts = defineCachedFunction(
           title: post.title.rendered,
           excerpt: post.excerpt.rendered,
           featuredMedia,
+          categories: post[ResponseFields.CATEGORIES],
         };
       }),
     );

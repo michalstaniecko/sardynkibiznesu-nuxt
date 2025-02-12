@@ -38,6 +38,7 @@ export const getPost = defineCachedFunction(
       content: post.content.rendered,
       featuredMedia,
       template: post[ResponseFields.TEMPLATE],
+      categories: post[ResponseFields.CATEGORIES],
     };
   },
   {

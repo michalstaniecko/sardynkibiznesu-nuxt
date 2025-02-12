@@ -3,7 +3,7 @@ import type { CategoryResponse } from "~/@types/categories";
 import { CategoryResponseFields } from "~/@types/categories";
 
 export const getCategories = defineCachedFunction(
-  async (event: H3Event, slug: string | undefined) => {
+  async (event: H3Event): Promise<CategoryResponse[] | undefined> => {
     const runtimeConfig = useRuntimeConfig(event);
     const api = runtimeConfig.apiBaseUrl + runtimeConfig.apiBasePath;
     const response = await $fetch<CategoryResponse[]>(`${api}/categories`, {
@@ -11,12 +11,38 @@ export const getCategories = defineCachedFunction(
         "_fields[]": Object.values(CategoryResponseFields),
       },
     });
-    if (slug && response) {
-      return response.find((category) => category.slug === slug);
-    }
     return response;
   },
   {
     swr: false,
+  },
+);
+
+export const getCategoryBySlug = defineCachedFunction(
+  async (event: H3Event, slug: string) => {
+    if (!slug) {
+      return;
+    }
+    const categories = await getCategories(event);
+
+    if (categories) {
+      return categories.find((category) => category.slug === slug);
+    }
+  },
+);
+
+export const getCategoryById = defineCachedFunction(
+  async (event: H3Event, id: string) => {
+    if (!id) {
+      return;
+    }
+    const runtimeConfig = useRuntimeConfig(event);
+    const api = runtimeConfig.apiBaseUrl + runtimeConfig.apiBasePath;
+    const response = await $fetch<CategoryResponse>(`${api}/categories/${id}`, {
+      params: {
+        "_fields[]": Object.values(CategoryResponseFields),
+      },
+    });
+    return response;
   },
 );

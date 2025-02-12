@@ -9,6 +9,8 @@ const title = post.title;
 const uri = post.slug;
 const excerpt = post.excerpt;
 const imageUrl = post.featuredMedia.file;
+
+const categoryId = post.categories?.[0] ?? 0;
 </script>
 
 <template>
@@ -32,7 +34,11 @@ const imageUrl = post.featuredMedia.file;
       <nuxt-link :to="uri" class="">
         <h2 class="text-2xl" v-html="title" />
       </nuxt-link>
-      <ThePostMeta />
+      <ThePostMeta
+        :date="post.createdAt"
+        :category-id="categoryId"
+        :post-id="post.id"
+      />
       <div class="py-5" v-html="excerpt" />
       <div>
         <nuxt-link :to="uri" class="text-primary-500"> Czytaj dalej </nuxt-link>

@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { count = 0 } = defineProps<{
+  count: number;
+}>();
+</script>
 
 <template>
-  <span> 58 comments </span>
+  <span> {{ count }} comments </span>
 </template>
 
 <style scoped></style>
