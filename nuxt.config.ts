@@ -22,9 +22,10 @@ export default defineNuxtConfig({
   ],
   i18n: {
     strategy: "prefix_except_default",
-    locales: ["en", "pl"],
+    locales: ["pl"],
     defaultLocale: "pl",
     vueI18n: "./i18n.config.ts",
+    detectBrowserLanguage: false,
   },
   css: ["~/assets/scss/main.scss"],
   postcss: {
