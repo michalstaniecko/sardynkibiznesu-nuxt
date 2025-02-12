@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     sources: ["/api/__sitemap__/urls"],
   },
   image: {
+    domains: [process.env.NUXT_IMAGE_DOMAIN || "localhost"],
     screens: {
       xs: 320,
       sm: 640,
