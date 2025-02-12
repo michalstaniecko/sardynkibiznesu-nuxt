@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  link: [
+    {
+      rel: "icon",
+      href: "/favicon.png",
+    },
+  ],
+});
+</script>
 
 <template>
   <NuxtLoadingIndicator />

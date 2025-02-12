@@ -2,6 +2,11 @@
 import type { Arguments, PostExcerpt } from "~/@types/post";
 import { ResponseFields } from "~/@types/post";
 
+useSeoMeta({
+  title: "Smallfisbusiness | Blog for small business | Main Page",
+  description: "Smart tips for small business growth",
+});
+
 definePageMeta({
   layout: "no-breadcrumb",
 });
