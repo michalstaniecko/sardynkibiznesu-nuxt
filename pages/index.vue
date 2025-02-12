@@ -12,7 +12,7 @@ definePageMeta({
 });
 
 const offset = ref(0);
-const perPage = 5;
+const perPage = 10;
 
 const args: Arguments = {
   per_page: perPage,

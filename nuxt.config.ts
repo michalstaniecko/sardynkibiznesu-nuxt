@@ -38,6 +38,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    defaultLocale: process.env.NUXT_DEFAULT_LOCALE || "pl",
     apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost",
     apiBasePath: process.env.NUXT_API_BASE_PATH || "/wp-json/wp/v2",
   },

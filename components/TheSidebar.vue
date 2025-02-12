@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Sidebar</div>
+  <div>
+    <TheSidebarAbout />
+  </div>
 </template>
 
 <style scoped></style>
