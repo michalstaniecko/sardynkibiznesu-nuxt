@@ -4,9 +4,6 @@ export default defineNuxtConfig({
     url: "http://localhost:3000",
     name: "Sardynki Biznesu",
   },
-  nitro: {
-    preset: "cloudflare-pages",
-  },
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
@@ -42,7 +39,7 @@ export default defineNuxtConfig({
     sources: ["/api/__sitemap__/urls"],
   },
   image: {
-    domains: [process.env.NUXT_IMAGE_DOMAIN || "localhost"],
+    domains: [process.env.NUXT_IMAGE_DOMAINS || "localhost"],
     screens: {
       xs: 320,
       sm: 640,
