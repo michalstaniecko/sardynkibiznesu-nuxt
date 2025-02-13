@@ -36,7 +36,8 @@ const categoryId = post.categories?.[0] ?? 0;
       </nuxt-link>
       <ThePostMeta
         :date="post.createdAt"
-        :category-id="categoryId"
+        :category="post.categories[0]"
+        :comments-count="post.commentsCount"
         :post-id="post.id"
       />
       <div class="py-5" v-html="excerpt" />

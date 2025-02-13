@@ -1,3 +1,5 @@
+import type { Category } from "~/@types/categories";
+
 export enum ResponseFields {
   ID = "id",
   DATE = "date",
@@ -21,7 +23,8 @@ export type PostExcerpt = {
   featuredMedia: {
     file: string;
   };
-  categories: number[];
+  categories: Category[];
+  commentsCount: number;
 };
 
 export type Post = {
