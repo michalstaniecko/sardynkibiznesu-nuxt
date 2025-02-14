@@ -20,7 +20,7 @@ const { category } = defineProps<{
       })
     "
   >
-    {{ category?.name }}
+    <span v-html="category?.name" />
   </NuxtLink>
 </template>
 

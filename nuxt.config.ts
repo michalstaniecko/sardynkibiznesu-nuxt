@@ -62,7 +62,7 @@ export default defineNuxtConfig({
     // "/**": { isr: 60 * 60 },
     "/api/**": {
       cache: {
-        //maxAge: 60 * 60,
+        maxAge: 60 * 60,
       },
     },
   },
