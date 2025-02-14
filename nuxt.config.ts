@@ -61,9 +61,9 @@ export default defineNuxtConfig({
   routeRules: {
     "/": {
       swr: 60 * 60,
-      headers: {
-        "Cache-Control": "Public max-age=604800",
-      },
+    },
+    "/**": {
+      swr: 60 * 60,
     },
     "/api/**": {
       swr: 60 * 60,
