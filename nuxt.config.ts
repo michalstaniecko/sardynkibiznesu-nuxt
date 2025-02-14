@@ -59,11 +59,14 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // "/**": { isr: 60 * 60 },
-    "/api/**": {
-      cache: {
-        //maxAge: 60 * 60,
+    "/": {
+      swr: 60 * 60,
+      headers: {
+        "Cache-Control": "Public max-age=604800",
       },
+    },
+    "/api/**": {
+      swr: 60 * 60,
     },
   },
 
