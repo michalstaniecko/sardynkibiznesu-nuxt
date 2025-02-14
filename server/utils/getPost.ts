@@ -38,7 +38,10 @@ export const getPost = defineCachedFunction(
       content: post.content.rendered,
       featuredMedia,
       template: post[ResponseFields.TEMPLATE],
-      categories: post[ResponseFields.CATEGORIES],
+      commentsCount: await getCommentsCount(event, post.id),
+      categories: await getCategories(event, {
+        include: post[ResponseFields.CATEGORIES],
+      }),
     };
   },
   {

@@ -19,27 +19,9 @@ export const getPosts = defineCachedFunction(
     return await Promise.all(
       results.map(async (post) => {
         const featuredMedia = await getMedia(event, post.featured_media);
-        const categoriesIds = post[ResponseFields.CATEGORIES];
-        const categories: Category[] = await Promise.all(
-          categoriesIds
-            .map(async (categoryId) => {
-              const category = await getCategoryById(
-                event,
-                categoryId as unknown as string,
-              );
-              if (!category) {
-                return undefined;
-              }
-              return {
-                id: category.id,
-                name: category.name,
-                slug: category.slug,
-              };
-            })
-            .filter(
-              (category) => category !== undefined,
-            ) as Promise<Category>[],
-        );
+        const categories = await getCategories(event, {
+          include: post[ResponseFields.CATEGORIES],
+        });
         const slug = post[ResponseFields.LINK].replace(
           runtimeConfig.apiBaseUrl,
           "",

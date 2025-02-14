@@ -1,19 +1,21 @@
-.boxed-without-sidebar {
-  @apply bg-gray-100;
-}
+@mixin layout {
+  .boxed-without-sidebar {
+    @apply bg-gray-100;
+  }
 
-.layout-default {
-  @apply grid lg:grid-cols-[3fr_1fr] gap-8 max-w-screen-xxl mx-auto px-5 py-10;
+  .layout-default {
+    @apply grid lg:grid-cols-[3fr_1fr] gap-8 max-w-screen-xxl mx-auto px-5 py-10;
 
-  .boxed-without-sidebar & {
-    @apply lg:grid-cols-1;
-    @apply max-w-[1024px] mx-auto bg-white shadow-xl rounded-lg py-5 my-5;
-    .layout__content {
-      @apply max-w-[800px] mx-auto;
-    }
+    .boxed-without-sidebar & {
+      @apply lg:grid-cols-1;
+      @apply max-w-[1024px] mx-auto bg-white shadow-xl rounded-lg py-5 my-5;
+      .layout__content {
+        @apply max-w-[800px] mx-auto;
+      }
 
-    .layout__sidebar {
-      display: none;
+      .layout__sidebar {
+        display: none;
+      }
     }
   }
 }

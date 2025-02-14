@@ -13,9 +13,12 @@ const route = useRoute();
 
 const slug = route.params.category;
 
-const { data: categories } = await useFetch<Category>(
-  `/api/categories/${slug}`,
-);
+const { data: categories } = await useFetch<Category[]>(`/api/categories`, {
+  method: "GET",
+  query: {
+    slug,
+  },
+});
 
 if (!categories.value) {
   console.log("error");
@@ -28,7 +31,7 @@ if (!categories.value) {
 const { data: posts } = await useFetch<PostExcerpt[]>(`/api/posts`, {
   method: "GET",
   params: {
-    categories: categories.value.id,
+    categories: categories.value[0].id,
   },
 });
 

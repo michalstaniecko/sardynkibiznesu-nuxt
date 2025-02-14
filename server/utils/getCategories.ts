@@ -3,12 +3,16 @@ import type { CategoryResponse } from "~/@types/categories";
 import { CategoryResponseFields } from "~/@types/categories";
 
 export const getCategories = defineCachedFunction(
-  async (event: H3Event): Promise<CategoryResponse[] | undefined> => {
+  async (
+    event: H3Event,
+    query = {},
+  ): Promise<CategoryResponse[] | undefined> => {
     const runtimeConfig = useRuntimeConfig(event);
     const api = runtimeConfig.apiBaseUrl + runtimeConfig.apiBasePath;
     const response = await $fetch<CategoryResponse[]>(`${api}/categories`, {
       params: {
         "_fields[]": Object.values(CategoryResponseFields),
+        ...query,
       },
     });
     return response;

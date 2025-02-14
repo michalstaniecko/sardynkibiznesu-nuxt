@@ -25,6 +25,7 @@ export type PostExcerpt = {
   };
   categories: Category[];
   commentsCount: number;
+  template: never;
 };
 
 export type Post = {
@@ -38,7 +39,8 @@ export type Post = {
     file: string;
   };
   template?: string;
-  categories: number[];
+  categories?: Category[];
+  commentsCount?: number;
 };
 
 export type Response = {

@@ -1,5 +1,8 @@
-export default defineEventHandler(async (event) => {
-  const slug = getRouterParam(event, "slug");
-  const categories = await getCategories(event, slug);
-  return categories;
-});
+import type { Category } from "~/@types/categories";
+export default defineEventHandler(
+  async (event): Promise<Category[] | undefined> => {
+    const query = getQuery(event);
+    const categories = await getCategories(event, query);
+    return categories;
+  },
+);

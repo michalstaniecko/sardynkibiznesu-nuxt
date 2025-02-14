@@ -6,7 +6,7 @@ const {
   category,
   commentsCount: count = 0,
 } = defineProps<{
-  category: Category;
+  category?: Category;
   date?: string;
   author?: { name: string; slug: string };
   commentsCount: number;
@@ -18,7 +18,7 @@ const formatted = useDateFormat(date, "MMMM DD, YYYY");
 <template>
   <div class="text-gray-400">
     {{ formatted }} /<ThePostCommentCount :count="count" />
-    <ThePostCategory :category="category" />/<ThePostAuthor />
+    <ThePostCategory v-if="category" :category="category" />/<ThePostAuthor />
   </div>
 </template>
 

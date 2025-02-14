@@ -1,3 +1,7 @@
-.ihumbak-anchor-menu-wrapper {
-  display: none;
+@mixin table-of-content {
+
+  .ihumbak-anchor-menu-wrapper {
+    display: none;
+  }
+
 }
