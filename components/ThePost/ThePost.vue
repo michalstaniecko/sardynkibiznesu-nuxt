@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { PostExcerpt } from "~/@types/post";
+import { useI18n } from "#imports";
+
+const { t } = useI18n();
 
 const { post } = defineProps<{
   post: PostExcerpt;
@@ -9,8 +12,6 @@ const title = post.title;
 const uri = post.slug;
 const excerpt = post.excerpt;
 const imageUrl = post.featuredMedia.file;
-
-const categoryId = post.categories?.[0] ?? 0;
 </script>
 
 <template>
@@ -18,15 +19,16 @@ const categoryId = post.categories?.[0] ?? 0;
     <div>
       <nuxt-link :to="uri">
         <NuxtImg
-          sizes="320px xs:640px sm:712px md:712px lg:712px xl:712px"
+          sizes="320px xs:640px sm:712px md:712px lg:712px xl:200px"
           :src="imageUrl"
           format="webp"
           width="712"
           height="401"
           :loading="index === 0 ? 'eager' : 'lazy'"
-          :preload="index === 0"
+          :preload="true"
           quality="90"
           :alt="title"
+          densities="x1 x2"
         />
       </nuxt-link>
     </div>
@@ -40,9 +42,11 @@ const categoryId = post.categories?.[0] ?? 0;
         :comments-count="post.commentsCount"
         :post-id="post.id"
       />
-      <div class="py-5" v-html="excerpt" />
+      <div class="pt-5 pb-3" v-html="excerpt" />
       <div>
-        <nuxt-link :to="uri" class="text-primary-500"> Czytaj dalej </nuxt-link>
+        <nuxt-link :to="uri" class="text-primary-600 text-sm font-medium">{{
+          t("readMore")
+        }}</nuxt-link>
       </div>
     </div>
   </div>
