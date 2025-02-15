@@ -56,13 +56,11 @@ export default defineNuxtConfig({
       lg: 1024,
       xl: 1280,
     },
+    provider: "ipx",
   },
 
   routeRules: {
     "/": {
-      swr: 60 * 60,
-    },
-    "/**": {
       swr: 60 * 60,
     },
     "/api/**": {
