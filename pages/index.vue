@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { Arguments, PostExcerpt } from "~/@types/post";
 import { ResponseFields } from "~/@types/post";
+import { useI18n } from "#imports";
+
+const { t } = useI18n();
 
 useSeoMeta({
-  title: "Smallfisbusiness | Blog for small business | Main Page",
-  description: "Smart tips for small business growth",
+  title: t("seo.homePage.title"),
+  description: t("seo.homePage.description"),
 });
 
 definePageMeta({

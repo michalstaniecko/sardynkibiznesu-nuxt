@@ -1,0 +1,15 @@
+{
+  "readMore": "Czytaj więcej",
+  "sidebar": {
+    "about": {
+      "text": "Cześć jestem Radek i witam Cię na blogu SardynkiBiznesu.pl! Znajdziesz tu artykuły poświęcone najważniejszym zagadnieniom związanym z prowadzeniem małej firmy: marketing, prawo, księgowość, public relations, zarządzanie i IT. Mamy nadzieję, że dzięki nam oszczędzisz dużo nerwów, czasu i pieniędzy, a prowadzenie biznesu stanie się prostsze.",
+      "url": "/start-here"
+    }
+  },
+  "seo": {
+    "homePage": {
+      "title": "Sardynki Biznesu | Blog dla małego biznesu | Strona główna",
+      "description": "Jak usprawnić małą firmę | Blog i podcast"
+    }
+  }
+}

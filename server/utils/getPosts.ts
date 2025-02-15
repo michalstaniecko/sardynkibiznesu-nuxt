@@ -1,8 +1,6 @@
 import type { H3Event } from "h3";
-import { getMedia } from "~/server/utils/getMedia";
 import type { Response, Arguments } from "~/@types/post";
 import { ResponseFields } from "~/@types/post";
-import type { Category } from "~/@types/categories";
 
 const initArguments: Arguments = {
   per_page: 10,
