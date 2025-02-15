@@ -16,6 +16,8 @@ export const getCommentsCount = defineCachedFunction(
     return response.length;
   },
   {
-    swr: false,
+    maxAge: 60 * 60,
+    name: "getCommentsCount",
+    getKey: (_event, postId) => postId.toString(),
   },
 );

@@ -13,7 +13,6 @@ export const getPosts = defineCachedFunction(
     const results = await $fetch<Response[]>(`${api}/posts`, {
       params: args,
     });
-
     return await Promise.all(
       results.map(async (post) => {
         const featuredMedia = await getMedia(event, post.featured_media);
@@ -39,6 +38,8 @@ export const getPosts = defineCachedFunction(
     );
   },
   {
-    swr: false,
+    maxAge: 60 * 60,
+    name: "getPosts",
+    getKey: (_event, args) => JSON.stringify(args),
   },
 );

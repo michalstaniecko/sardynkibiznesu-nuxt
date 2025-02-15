@@ -45,6 +45,8 @@ export const getPost = defineCachedFunction(
     };
   },
   {
-    swr: false,
+    maxAge: 60 * 60,
+    name: "getPost",
+    getKey: (_event, contentType, slug) => `${contentType}-${slug}`,
   },
 );

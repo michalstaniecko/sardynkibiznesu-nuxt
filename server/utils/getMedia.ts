@@ -15,6 +15,8 @@ export const getMedia = defineCachedFunction(
     };
   },
   {
-    swr: false,
+    maxAge: 60 * 60,
+    name: "getMedia",
+    getKey: (_event, id) => JSON.stringify(id),
   },
 );

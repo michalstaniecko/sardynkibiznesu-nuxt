@@ -18,7 +18,9 @@ export const getCategories = defineCachedFunction(
     return response;
   },
   {
-    swr: false,
+    maxAge: 60 * 60,
+    name: "getCategories",
+    getKey: (_event, query) => JSON.stringify(query),
   },
 );
 
@@ -27,11 +29,19 @@ export const getCategoryBySlug = defineCachedFunction(
     if (!slug) {
       return;
     }
-    const categories = await getCategories(event);
+    const categories = await getCategories(event, {
+      slug,
+    });
 
-    if (categories) {
-      return categories.find((category) => category.slug === slug);
+    if (!categories) {
+      return;
     }
+    return categories[0];
+  },
+  {
+    maxAge: 60 * 60,
+    name: "getCategoryBySlug",
+    getKey: (_event, slug) => slug,
   },
 );
 
@@ -48,5 +58,10 @@ export const getCategoryById = defineCachedFunction(
       },
     });
     return response;
+  },
+  {
+    maxAge: 60 * 60,
+    name: "getCategoryById",
+    getKey: (_event, id) => id,
   },
 );

@@ -15,7 +15,7 @@ definePageMeta({
 });
 
 const offset = ref(0);
-const perPage = 10;
+const perPage = 5;
 
 const args: Arguments = {
   per_page: perPage,
@@ -37,6 +37,12 @@ const loadMore = async () => {
       offset: offset.value,
     },
   });
+
+  if (!response.length) {
+    console.log("No more posts");
+    return;
+  }
+
   if (!posts.value) {
     posts.value = [];
   }
