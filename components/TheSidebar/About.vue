@@ -16,7 +16,7 @@
     </p>
     <RouterLink
       :to="$t('sidebar.about.url')"
-      class="inline-flex font-medium text-sm items-center text-primary-600 hover:underline"
+      class="inline-flex font-semibold text-xs items-center text-primary-600 hover:underline"
     >
       {{ $t("readMore") }}
       <svg
