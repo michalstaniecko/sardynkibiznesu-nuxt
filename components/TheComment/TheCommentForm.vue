@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import commentMutation from "~/queries/commentMutation";
-
 type CommentFormProps = {
   email: string;
   name: string;
@@ -9,8 +7,9 @@ type CommentFormProps = {
   commentOn: number;
   parent?: number;
 };
-const { parent } = defineProps<{
+const { parent, postId } = defineProps<{
   parent?: number;
+  postId: number;
 }>();
 
 const email = ref("");
@@ -18,22 +17,18 @@ const name = ref("");
 const website = ref("");
 const content = ref("");
 
-const postId = inject<number>("postId")!;
-
-const { mutate, loading } = useMutation(commentMutation);
-
 const submitHandler = async () => {
-  const commentForm: CommentFormProps = {
-    email: email.value,
-    name: name.value,
-    website: website.value,
-    content: content.value,
-    commentOn: postId,
-    parent: parent || 0,
-  };
-  console.log(commentForm);
-  const response = await mutate(commentForm);
-  console.log(response);
+  // const commentForm: CommentFormProps = {
+  //   email: email.value,
+  //   name: name.value,
+  //   website: website.value,
+  //   content: content.value,
+  //   commentOn: postId,
+  //   parent: parent || 0,
+  // };
+  // console.log(commentForm);
+  // const response = await mutate(commentForm);
+  // console.log(response);
 };
 </script>
 
@@ -51,7 +46,6 @@ const submitHandler = async () => {
       </div>
       <div>
         <button
-          :disabled="loading"
           type="submit"
           class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white disabled:bg-primary-100 bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
         >

@@ -1,5 +1,27 @@
 import type { Category } from "~/@types/categories";
 
+export type CommentResponse = {
+  id: number;
+  date: string;
+  content: { rendered: string };
+  parent: number;
+  author_name: string;
+  author_avatar_urls: {
+    "48": string;
+  };
+};
+
+export type Comment = {
+  id: number;
+  createdAt: string;
+  content: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  parent: number;
+};
+
 export enum ResponseFields {
   ID = "id",
   DATE = "date",
@@ -37,10 +59,11 @@ export type Post = {
   slug: string;
   featuredMedia: {
     file: string;
-  };
+  } | null;
   template?: string;
   categories?: Category[];
   commentsCount?: number;
+  comments: Comment[] | null;
 };
 
 export type Response = {

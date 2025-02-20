@@ -10,6 +10,7 @@ export const getCommentsCount = defineCachedFunction(
       params: {
         post: [postId],
         "_fields[]": ["id"],
+        per_page: 100,
       },
     });
 

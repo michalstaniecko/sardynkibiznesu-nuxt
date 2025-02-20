@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { CommentProps } from "~/@types/post";
+import type { Comment } from "~/@types/post";
 
 const showForm = ref(false);
 
 const { comment } = defineProps<{
-  comment: CommentProps;
+  comment: Comment;
 }>();
 
-const date = useDateFormat(comment.date, "D MMMM, YYYY");
+const date = useDateFormat(comment.createdAt, "D MMMM, YYYY");
 </script>
 
 <template>
@@ -19,12 +19,14 @@ const date = useDateFormat(comment.date, "D MMMM, YYYY");
         >
           <img
             class="mr-2 w-6 h-6 rounded-full"
-            :src="comment.author.node.avatar.url"
-            alt="Michael Gough"
-          />{{ comment.author.node.name }}
+            :src="comment.author.avatar"
+            :alt="comment.author.name"
+          />{{ comment.author.name }}
         </p>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          <time pubdate :datetime="comment.date" :title="date">{{ date }}</time>
+          <time pubdate :datetime="comment.createdAt" :title="date">{{
+            date
+          }}</time>
         </p>
       </div>
       <button
@@ -108,7 +110,7 @@ const date = useDateFormat(comment.date, "D MMMM, YYYY");
       <div v-if="showForm">
         <div>
           <div class="pt-6">
-            <TheCommentForm :parent="comment.databaseId" />
+            <TheCommentForm :parent="comment.id" />
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@ if (error.value) {
       :category="data.categories?.[0] ?? undefined"
     />
     <TheContent :content="data.content" />
+    <TheCommentList :comments="data.comments" :post-id="data.id" />
     <div v-if="error">{{ error }}</div>
   </div>
 </template>

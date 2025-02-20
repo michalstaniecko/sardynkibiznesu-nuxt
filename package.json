@@ -26,6 +26,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@vercel/speed-insights": "^1.0.12",
     "@vue/apollo-composable": "^4.0.2",
+    "@vueuse/components": "^12.7.0",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
     "eslint": "^9.5.0",

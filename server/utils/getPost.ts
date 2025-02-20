@@ -1,4 +1,4 @@
-import type { Response } from "~/@types/post";
+import type { Post, Response } from "~/@types/post";
 import { ContentTypes, ResponseFields } from "~/@types/post";
 import { getMedia } from "~/server/utils/getMedia";
 import type { H3Event } from "h3";
@@ -8,7 +8,7 @@ export const getPost = defineCachedFunction(
     event: H3Event,
     contentType: ContentTypes = ContentTypes.POSTS,
     slug: string,
-  ) => {
+  ): Promise<Post | null> => {
     const runtimeConfig = useRuntimeConfig(event);
     const api = runtimeConfig.apiBaseUrl + runtimeConfig.apiBasePath;
     const posts = await $fetch<Response[]>(
@@ -42,10 +42,15 @@ export const getPost = defineCachedFunction(
       categories: await getCategories(event, {
         include: post[ResponseFields.CATEGORIES],
       }),
+      comments: await getComments(event, {
+        post: post.id,
+        per_page: 10,
+        parent: [0],
+      }),
     };
   },
   {
-    maxAge: 60 * 60,
+    swr: false,
     name: "getPost",
     getKey: (_event, contentType, slug) => `${contentType}-${slug}`,
   },

@@ -30,11 +30,11 @@ export default defineNuxtConfig({
       swr: 60 * 60,
     },
     "/**/*": {
-      swr: 60 * 60,
+      swr: false,
     },
-    "/api/**": {
-      swr: 60 * 60,
-    },
+    // "/api/**": {
+    //   swr: 60 * 60,
+    // },
     "_ipx/**": {
       headers: {
         "Cache-Control": "public, max-age=31536000, immutable",
