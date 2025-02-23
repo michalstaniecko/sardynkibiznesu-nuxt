@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { Comment } from "~/@types/post";
+import { useI18n } from "#imports";
+
+const { t } = useI18n();
 
 const { comments, postId } = defineProps<{
   postId: number;
@@ -10,11 +13,11 @@ const commentsCount = 45;
 </script>
 
 <template>
-  <section class="bg-white dark:bg-gray-900 antialiased">
+  <section class="bg-white dark:bg-gray-900 antialiased py-5">
     <div class="mx-auto">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-          Dyskusja ({{ commentsCount }})
+          {{ t("discussion.title") }} ({{ commentsCount }})
         </h2>
       </div>
       <TheCommentForm :post-id="postId" />

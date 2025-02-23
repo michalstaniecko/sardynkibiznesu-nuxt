@@ -1,4 +1,21 @@
 <script setup lang="ts">
+import z from "zod";
+import { useValidation, useI18n } from "#imports";
+
+const { t } = useI18n();
+
+const formSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .nonempty({ message: t("errors.form.email") }),
+  name: z.string().nonempty({ message: t("errors.form.name") }),
+  website: z.string().optional(),
+  content: z.string().nonempty({ message: t("errors.form.comment") }),
+  commentOn: z.number(),
+  parent: z.number().optional(),
+});
+
 type CommentFormProps = {
   email: string;
   name: string;
@@ -7,6 +24,15 @@ type CommentFormProps = {
   commentOn: number;
   parent?: number;
 };
+
+type ErrorProps = {
+  email?: string[];
+  name?: string[];
+  content?: string[];
+};
+
+const { errors, validate } = useValidation<ErrorProps>(formSchema);
+
 const { parent, postId } = defineProps<{
   parent?: number;
   postId: number;
@@ -18,14 +44,25 @@ const website = ref("");
 const content = ref("");
 
 const submitHandler = async () => {
-  // const commentForm: CommentFormProps = {
-  //   email: email.value,
-  //   name: name.value,
-  //   website: website.value,
-  //   content: content.value,
-  //   commentOn: postId,
-  //   parent: parent || 0,
-  // };
+  console.log(
+    "submitHandler",
+    email.value,
+    name.value,
+    website.value,
+    content.value,
+    postId,
+    parent,
+  );
+  const commentForm: CommentFormProps = {
+    email: email.value,
+    name: name.value,
+    website: website.value,
+    content: content.value,
+    commentOn: postId,
+    parent: parent || 0,
+  };
+
+  validate<CommentFormProps>(commentForm);
   // console.log(commentForm);
   // const response = await mutate(commentForm);
   // console.log(response);
@@ -37,11 +74,19 @@ const submitHandler = async () => {
     <div class="grid gap-3">
       <div class="grid">
         <label for="comment" class="sr-only">Your comment</label>
-        <UiTextarea v-model="content" />
+        <UiTextarea v-model="content" :error="errors && errors.content" />
       </div>
       <div class="grid lg:grid-cols-3 gap-3">
-        <UiInput v-model="email" placeholder="Email" />
-        <UiInput v-model="name" placeholder="Name" />
+        <UiInput
+          v-model="email"
+          placeholder="Email"
+          :error="errors && errors.email"
+        />
+        <UiInput
+          v-model="name"
+          placeholder="Name"
+          :error="errors && errors.name"
+        />
         <UiInput v-model="website" placeholder="Website" />
       </div>
       <div>

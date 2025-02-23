@@ -11,5 +11,16 @@
       "title": "Smallfisbusiness | Blog for small business | Main Page",
       "description": "Smart tips for small business growth"
     }
+  },
+  "discussion": {
+    "title": "Discussion"
+  },
+  "errors": {
+    "form": {
+      "name": "Name is required",
+      "email": "Email is required",
+      "message": "Message is required",
+      "comment": "Comment is required"
+    }
   }
 }
