@@ -16,7 +16,7 @@ export const useValidation = <E>(schemaObject: ZodSchema) => {
     if (result.success) {
       success.value = true;
       errors.value = {} as E;
-      return;
+      return true;
     }
 
     const issues = result.error.issues;
@@ -32,6 +32,8 @@ export const useValidation = <E>(schemaObject: ZodSchema) => {
       };
       return { ...acc, ..._acc };
     }, {} as E);
+
+    return false;
   };
   return { validate, errors, success, isError };
 };

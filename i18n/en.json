@@ -21,6 +21,7 @@
       "email": "Email is required",
       "message": "Message is required",
       "comment": "Comment is required"
-    }
+    },
+    "comment_duplicate": "You have already posted this comment"
   }
 }

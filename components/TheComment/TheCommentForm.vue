@@ -33,6 +33,12 @@ type ErrorProps = {
 
 const { errors, validate } = useValidation<ErrorProps>(formSchema);
 
+const { status, error, execute, data } = useFetch("/api/comment", {
+  immediate: false,
+  watch: false,
+  method: "POST",
+});
+
 const { parent, postId } = defineProps<{
   parent?: number;
   postId: number;
@@ -62,10 +68,13 @@ const submitHandler = async () => {
     parent: parent || 0,
   };
 
-  validate<CommentFormProps>(commentForm);
-  // console.log(commentForm);
-  // const response = await mutate(commentForm);
-  // console.log(response);
+  const validation = validate<CommentFormProps>(commentForm);
+
+  if (!validation) {
+    return;
+  }
+
+  execute();
 };
 </script>
 
@@ -91,11 +100,18 @@ const submitHandler = async () => {
       </div>
       <div>
         <button
+          :disabled="status === 'pending'"
           type="submit"
           class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white disabled:bg-primary-100 bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
         >
           Post comment
         </button>
+      </div>
+      <div
+        v-if="status === 'error' && error"
+        class="text-sm text-red-500 font-medium"
+      >
+        {{ t(`errors.${error?.statusMessage}`) }}
       </div>
     </div>
   </form>
