@@ -23,5 +23,8 @@
       "comment": "Comment is required"
     },
     "comment_duplicate": "You have already posted this comment"
+  },
+  "comment": {
+    "success": "Your comment has been sent and is awaiting moderation"
   }
 }

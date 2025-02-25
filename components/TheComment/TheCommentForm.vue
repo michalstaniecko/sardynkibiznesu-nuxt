@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import z from "zod";
 import { useValidation, useI18n } from "#imports";
+import { CommentRequestBodyKeys } from "~/@types/comment";
+
+const { parent, postId } = defineProps<{
+  parent?: number;
+  postId: number;
+}>();
 
 const { t } = useI18n();
 
@@ -31,34 +37,29 @@ type ErrorProps = {
   content?: string[];
 };
 
+const email = ref("");
+const name = ref("");
+const website = ref("");
+const content = ref("");
+
+const body = computed(() => ({
+  [CommentRequestBodyKeys.email]: email.value,
+  [CommentRequestBodyKeys.name]: name.value,
+  [CommentRequestBodyKeys.post]: postId,
+  [CommentRequestBodyKeys.content]: content.value,
+  [CommentRequestBodyKeys.parent]: parent || 0,
+}));
+
 const { errors, validate } = useValidation<ErrorProps>(formSchema);
 
 const { status, error, execute, data } = useFetch("/api/comment", {
   immediate: false,
   watch: false,
   method: "POST",
+  body,
 });
 
-const { parent, postId } = defineProps<{
-  parent?: number;
-  postId: number;
-}>();
-
-const email = ref("");
-const name = ref("");
-const website = ref("");
-const content = ref("");
-
 const submitHandler = async () => {
-  console.log(
-    "submitHandler",
-    email.value,
-    name.value,
-    website.value,
-    content.value,
-    postId,
-    parent,
-  );
   const commentForm: CommentFormProps = {
     email: email.value,
     name: name.value,
@@ -76,6 +77,15 @@ const submitHandler = async () => {
 
   execute();
 };
+
+watchEffect(() => {
+  if (status.value === "success") {
+    email.value = "";
+    name.value = "";
+    website.value = "";
+    content.value = "";
+  }
+});
 </script>
 
 <template>
@@ -112,6 +122,12 @@ const submitHandler = async () => {
         class="text-sm text-red-500 font-medium"
       >
         {{ t(`errors.${error?.statusMessage}`) }}
+      </div>
+      <div
+        v-if="status === 'success'"
+        class="text-sm text-green-500 font-medium"
+      >
+        {{ t("comment.success") }}
       </div>
     </div>
   </form>
