@@ -3,14 +3,15 @@ export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event);
   const api = runtimeConfig.apiBaseUrl + runtimeConfig.apiBasePath;
 
-  console.log(body);
-
   const response = await $fetch(`${api}/comments/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body,
+    body: {
+      ...body,
+      sb_s_key: runtimeConfig.sb_s_key,
+    },
     async onResponseError({ response }) {
       throw createError({
         statusText: response._data.code,

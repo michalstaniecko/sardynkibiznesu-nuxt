@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     apiBaseUrl: "https://smallfishbusiness.com",
     apiBasePath: "/wp-json/wp/v2",
+    sb_s_key: process.env.SB_S_KEY || "",
   },
 
   sitemap: {
