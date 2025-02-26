@@ -12,13 +12,6 @@ export default defineEventHandler(async (event) => {
       ...body,
       sb_s_key: runtimeConfig.sb_s_key,
     },
-    async onResponseError({ response }) {
-      throw createError({
-        statusText: response._data.code,
-        status: response._data.data.status,
-        message: response._data.message,
-      });
-    },
   });
   return response;
 });
