@@ -122,6 +122,8 @@ watchEffect(() => {
         class="text-sm text-red-500 font-medium"
       >
         {{ t(`errors.${error?.statusMessage}`) }}
+        {{ error }}<br />
+        {{ data }}
       </div>
       <div
         v-if="status === 'success'"
