@@ -2,6 +2,9 @@ version: '3.8'
 
 services:
   nuxt-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.run
     labels:
       - traefik.enable=true
       - traefik.http.routers.${PROJECT}.rule=Host(`${DOMAIN}`)
@@ -9,6 +12,8 @@ services:
       - traefik.http.routers.${PROJECT}.tls.certresolver=lets-encrypt
       - traefik.port=80
       - traefik.http.middlewares.${PROJECT}.compress=true
+      - traefik.http.middlewares.${PROJECT}.compress.includedcontenttypes=application/json,text/html,text/plain,text/javascript
+      - traefik.http.middlewares.${PROJECT}.compress.defaultEncoding=gzip
     networks:
       - internal
       - web
