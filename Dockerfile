@@ -6,16 +6,16 @@ WORKDIR /app
 RUN corepack enable
 
 # Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm install
+RUN pnpm install
 
 # Copy the entire project
 COPY . ./
 
 # Build the project
-RUN npm run build
+RUN pnpm run build
 
 # Build Stage 2
 
