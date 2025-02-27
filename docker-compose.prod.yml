@@ -8,3 +8,12 @@ services:
       - traefik.http.routers.${PROJECT}.tls=true
       - traefik.http.routers.${PROJECT}.tls.certresolver=lets-encrypt
       - traefik.port=80
+    networks:
+      - internal
+      - web
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
