@@ -11,9 +11,9 @@ services:
       - traefik.http.routers.${PROJECT}.tls=true
       - traefik.http.routers.${PROJECT}.tls.certresolver=lets-encrypt
       - traefik.port=80
-      - traefik.http.middlewares.${PROJECT}.compress=true
-      - traefik.http.middlewares.${PROJECT}.compress.includedcontenttypes=application/json,text/html,text/plain,text/javascript
-      - traefik.http.middlewares.${PROJECT}.compress.defaultEncoding=gzip
+      - "traefik.http.middlewares.${PROJECT}-compress.compress=true"
+      - "traefik.http.routers.${PROJECT}.middlewares=${PROJECT}-compress@docker,${PROJECT}-auth@docker"
+      - traefik.http.middlewares.${PROJECT}-auth.basicauth.users=smallfish:$$apr1$$qKS5h3Ee$$ryblpf7DmJd5L6PKfcoMM1
     networks:
       - internal
       - web
