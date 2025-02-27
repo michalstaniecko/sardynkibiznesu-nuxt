@@ -4,7 +4,7 @@ services:
   nuxt-app:
     build:
       context: .
-      dockerfile: Dockerfile.run
+      dockerfile: Dockerfile
     labels:
       - traefik.enable=true
       - traefik.http.routers.${PROJECT}.rule=Host(`${DOMAIN}`)
