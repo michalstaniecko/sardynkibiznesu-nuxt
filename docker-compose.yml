@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  nuxt-app:
+    build: .
+    environment:
+      - NUXT_HOST=0.0.0.0
+      - NUXT_PORT=80

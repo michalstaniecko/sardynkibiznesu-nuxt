@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  nuxt-app:
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${PROJECT}.tls=true
+      - traefik.http.routers.${PROJECT}.tls.certresolver=lets-encrypt
+      - traefik.port=80
