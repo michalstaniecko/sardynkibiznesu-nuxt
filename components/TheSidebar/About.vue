@@ -11,7 +11,9 @@
       format="webp"
       class="float-right ml-2 mb-2"
     />
-    <p class="font-normal text-sm text-gray-700 dark:text-gray-400">
+    <p
+      class="font-normal text-sm md:text-xs xl:text-sm text-gray-700 dark:text-gray-400"
+    >
       {{ $t("sidebar.about.text") }}
     </p>
     <RouterLink

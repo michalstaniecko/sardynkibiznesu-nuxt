@@ -4,7 +4,7 @@
   }
 
   .layout-default {
-    @apply grid lg:grid-cols-[3fr_1fr] gap-8 max-w-screen-xxl mx-auto px-5 py-10;
+    @apply grid lg:grid-cols-[8fr_3fr] gap-8 max-w-screen-xxl mx-auto px-5 py-10;
 
     .boxed-without-sidebar & {
       @apply lg:grid-cols-1;
