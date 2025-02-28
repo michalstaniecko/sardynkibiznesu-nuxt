@@ -3,7 +3,15 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
-  content: ["./node_modules/flowbite/**/*.js"],
+  content: [
+    "./node_modules/flowbite/**/*.js",
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./app.vue",
+    "./error.vue",
+  ],
   theme: {
     extend: {
       fontFamily: {

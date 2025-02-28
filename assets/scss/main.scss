@@ -8,6 +8,10 @@
 
 @use 'utilities/text';
 
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @layer base {
   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 }
@@ -35,3 +39,31 @@ html, body {
 @include navigation.navigation;
 
 @include table-of-content.table-of-content;
+
+h1, .h1 {
+  @apply text-2xl;
+
+  @screen md {
+    @apply text-4xl leading-[3rem];
+  }
+}
+
+h2, .h2 {
+  @apply text-xl font-normal;
+  @screen md {
+    @apply text-3xl;
+  }
+}
+
+h3, .h3 {
+  @apply text-2xl font-normal;
+}
+
+a {
+  @apply hover:underline;
+  text-underline-offset: 2px;
+
+  .navigation & {
+    @apply hover:no-underline;
+  }
+}

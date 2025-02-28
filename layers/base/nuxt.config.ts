@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@vueuse/nuxt",
@@ -24,7 +23,7 @@ export default defineNuxtConfig({
     provider: "ipx",
   },
 
-  css: ["~/assets/scss/tailwindcss.scss"],
+  css: ["~/assets/scss/main.scss"],
 
   postcss: {
     plugins: {
