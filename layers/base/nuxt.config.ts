@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     provider: "ipx",
   },
 
-  css: ["~/assets/scss/main.scss"],
+  css: ["~/assets/scss/tailwindcss.scss"],
 
   postcss: {
     plugins: {
