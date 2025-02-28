@@ -29,6 +29,7 @@ const imageUrl = post.featuredMedia.file;
           quality="90"
           :alt="title"
           densities="x1 x2"
+          :fetchpriority="index === 0 ? 'high' : 'low'"
         />
       </nuxt-link>
     </div>
