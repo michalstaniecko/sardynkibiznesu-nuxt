@@ -30,7 +30,7 @@ const imageUrl = post.featuredMedia.file;
           :alt="title"
           densities="x1 x2"
           :fetchpriority="index === 0 ? 'high' : 'low'"
-          placeholder
+          :placeholder="[712, 401]"
         />
       </nuxt-link>
     </div>
