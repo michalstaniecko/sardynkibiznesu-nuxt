@@ -28,7 +28,9 @@ html, body {
 @include layout.layout;
 
 @include article.article;
-@include typos.typos;
+@layer base {
+  @include typos.typos;
+}
 @include single-newsletter-form.single-newsletter-form;
 @include buttons.button;
 
