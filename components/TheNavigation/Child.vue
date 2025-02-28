@@ -5,7 +5,7 @@ const props = defineProps<MenuItem>();
 </script>
 
 <template>
-  <li>
+  <li class="relative">
     <TheNavigationChildLink v-if="!props.children" v-bind="props" />
     <TheNavigationChildDropdown v-if="props.children" v-bind="props" />
   </li>

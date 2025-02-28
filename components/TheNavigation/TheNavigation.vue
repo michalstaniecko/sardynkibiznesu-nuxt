@@ -15,13 +15,14 @@ const langMenu = menu[locale.value];
           format="webp"
           width="341"
           height="40"
+          preload
           src="https://smallfishbusiness.com/wp-content/uploads/2021/11/logo-small-fish-business.png"
         />
       </RouterLink>
     </template>
     <template #menulist>
       <ul
-        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 xl:space-x-8 rtl:space-x-reverse xl:flex-row xl:mt-0 md:border-0 xl:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="flex flex-col font-medium p-4 md:p-0 xl:mt-4 border border-gray-100 rounded-lg bg-gray-50 xl:space-x-8 rtl:space-x-reverse xl:flex-row xl:mt-0 md:border-0 xl:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <TheNavigationItem
           v-for="(item, index) in langMenu"

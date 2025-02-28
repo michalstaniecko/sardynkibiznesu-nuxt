@@ -28,10 +28,10 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/": {
-      swr: 60 * 60,
+      swr: false,
     },
     "/**/*": {
-      swr: 60 * 60,
+      swr: false,
     },
     "/api/**": {
       swr: 60 * 60,

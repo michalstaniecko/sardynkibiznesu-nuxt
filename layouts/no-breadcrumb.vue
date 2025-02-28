@@ -1,10 +1,4 @@
-<script setup lang="ts">
-onMounted(() => {
-  useFlowbite((flowbite) => {
-    flowbite.initFlowbite();
-  });
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
