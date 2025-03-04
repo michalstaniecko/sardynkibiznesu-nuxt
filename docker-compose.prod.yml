@@ -27,6 +27,8 @@ services:
       dockerfile: Dockerfile
     networks:
       - internal
+    labels:
+      - traefik.enable=false
 
 networks:
   web:
