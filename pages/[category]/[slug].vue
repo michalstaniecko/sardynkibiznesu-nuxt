@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Post } from "~/@types/post";
+import type { Category } from "~/@types/categories";
 
+const localePath = useLocalePath();
+const { t } = useI18n();
 const route = useRoute();
 const { data, error } = await useFetch<Post>(`/api/post/${route.params.slug}`, {
   method: "GET",
@@ -8,6 +11,34 @@ const { data, error } = await useFetch<Post>(`/api/post/${route.params.slug}`, {
     slug: route.params.slug,
   },
 });
+
+if (data && data.value) {
+  const category = data.value.categories?.[0] as Category;
+
+  const categoryTo = localePath({
+    name: "categories-category",
+    params: {
+      category: category?.slug,
+    },
+  });
+
+  const links = [
+    {
+      to: "/",
+      label: t("home"),
+    },
+    {
+      to: categoryTo,
+      label: category.name,
+    },
+    {
+      to: null,
+      label: data.value.title,
+    },
+  ];
+
+  //console.log(links);
+}
 
 if (error.value) {
   throw createError({
@@ -22,7 +53,11 @@ if (error.value) {
     <Head>
       <Title>{{ data.title }}</Title>
     </Head>
-    <NuxtImg :src="data.featuredMedia.file" :alt="data.title" />
+    <NuxtImg
+      v-if="data.featuredMedia"
+      :src="data.featuredMedia.file"
+      :alt="data.title"
+    />
     <h1>{{ data.title }}</h1>
     <ThePostMeta
       :date="data.createdAt"

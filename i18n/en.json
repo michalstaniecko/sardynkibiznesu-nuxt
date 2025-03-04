@@ -26,5 +26,6 @@
   },
   "comment": {
     "success": "Your comment has been sent and is awaiting moderation"
-  }
+  },
+  "home": "Home"
 }

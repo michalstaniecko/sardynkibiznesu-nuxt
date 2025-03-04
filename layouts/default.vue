@@ -3,7 +3,7 @@
 <template>
   <div>
     <TheHeader />
-    <div class="p-3">breadcrumbs</div>
+    <TheBreadcrumb />
     <div class="layout layout-default">
       <div class="layout__content">
         <slot />
