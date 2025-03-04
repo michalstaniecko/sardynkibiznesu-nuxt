@@ -1,22 +1,33 @@
 version: '3.8'
 
 services:
-  nuxt-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    depends_on:
+      - nuxt-app
+    volumes:
+      - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf
     labels:
       - traefik.enable=true
       - traefik.http.routers.${PROJECT}.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.${PROJECT}.tls=true
       - traefik.http.routers.${PROJECT}.tls.certresolver=lets-encrypt
       - traefik.port=80
-      - "traefik.http.middlewares.${PROJECT}-compress.compress=true"
-      - "traefik.http.routers.${PROJECT}.middlewares=${PROJECT}-compress@docker,${PROJECT}-auth@docker"
-      - traefik.http.middlewares.${PROJECT}-auth.basicauth.users=smallfish:$$apr1$$qKS5h3Ee$$ryblpf7DmJd5L6PKfcoMM1
+      #- "traefik.http.middlewares.${PROJECT}-compress.compress=true"
+      #- "traefik.http.routers.${PROJECT}.middlewares=${PROJECT}-compress@docker,${PROJECT}-auth@docker"
+      #- traefik.http.middlewares.${PROJECT}-auth.basicauth.users=smallfish:$$apr1$$qKS5h3Ee$$ryblpf7DmJd5L6PKfcoMM1
+    networks:
+      - web
+      - internal
+
+  nuxt-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - internal
-      - web
 
 networks:
   web:
