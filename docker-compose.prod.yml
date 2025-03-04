@@ -7,7 +7,7 @@ services:
     depends_on:
       - nuxt-app
     volumes:
-      - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-conf:/etc/nginx/conf.d
     labels:
       - traefik.enable=true
       - traefik.http.routers.${PROJECT}.rule=Host(`${DOMAIN}`)
