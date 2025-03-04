@@ -8,6 +8,7 @@ services:
       - nuxt-app
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
+      - ./htpasswd:/etc/nginx/htpasswd:ro
     labels:
       - traefik.enable=true
       - traefik.http.routers.${PROJECT}.rule=Host(`${DOMAIN}`)
