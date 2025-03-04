@@ -3,7 +3,6 @@ version: '3.8'
 services:
   webserver:
     image: nginx:alpine
-    container_name: webserver
     restart: unless-stopped
     depends_on:
       - nuxt-app
