@@ -34,6 +34,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^5.1.3",
     "flowbite": "^2.3.0",
+    "he": "^1.2.0",
     "nuxt": "^3.12.1",
     "nuxt-viewport": "^2.1.5",
     "pinia": "^2.1.7",

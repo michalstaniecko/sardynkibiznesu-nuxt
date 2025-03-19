@@ -12,7 +12,7 @@ const { data, error } = await useFetch<Post>(`/api/post/${route.params.slug}`, {
   },
 });
 
-if (data && data.value) {
+const links = computed(() => {
   const category = data.value.categories?.[0] as Category;
 
   const categoryTo = localePath({
@@ -22,11 +22,7 @@ if (data && data.value) {
     },
   });
 
-  const links = [
-    {
-      to: "/",
-      label: t("home"),
-    },
+  return [
     {
       to: categoryTo,
       label: category.name,
@@ -36,9 +32,7 @@ if (data && data.value) {
       label: data.value.title,
     },
   ];
-
-  //console.log(links);
-}
+});
 
 if (error.value) {
   throw createError({
@@ -53,18 +47,19 @@ if (error.value) {
     <Head>
       <Title>{{ data.title }}</Title>
     </Head>
+    <TheBreadcrumb :links="links" />
     <NuxtImg
       v-if="data.featuredMedia"
       :src="data.featuredMedia.file"
       :alt="data.title"
     />
-    <h1>{{ data.title }}</h1>
+    <h1 class="mt-5">{{ data.title }}</h1>
     <ThePostMeta
       :date="data.createdAt"
       :comments-count="data.commentsCount ?? 0"
       :category="data.categories?.[0] ?? undefined"
     />
-    <TheContent :content="data.content" />
+    <TheContent :content="data.content" class="mt-5" />
     <TheCommentList :comments="data.comments" :post-id="data.id" />
     <div v-if="error">{{ error }}</div>
   </div>

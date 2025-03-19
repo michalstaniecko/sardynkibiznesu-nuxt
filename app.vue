@@ -6,6 +6,12 @@ useHead({
       href: "/favicon.png",
     },
   ],
+  meta: [
+    {
+      name: "charset",
+      content: "utf-8",
+    },
+  ],
 });
 </script>
 

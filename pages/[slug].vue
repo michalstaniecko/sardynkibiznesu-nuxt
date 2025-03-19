@@ -36,11 +36,22 @@ const handlePageLayout = () => {
 if (data.value) {
   handlePageLayout();
 }
+
+const links = computed(() => {
+  return [
+    {
+      to: "",
+      label: data.value.title,
+    },
+  ];
+});
 </script>
 
 <template>
   <NuxtLayout :name="layout">
-    <TheContent v-if="data" :content="data.content" />
+    <TheBreadcrumb v-if="layout === 'default'" :links="links" />
+    <h1>{{ data.title }}</h1>
+    <TheContent v-if="data" :content="data.content" class="mt-5" />
   </NuxtLayout>
 </template>
 
